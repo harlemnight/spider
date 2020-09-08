@@ -50,12 +50,13 @@ def parse_shareholders_data(response, symbol, per_symbol, source):
     Return
     --------
      """
-    kggxs, gdrss, jjcgs = [], [], []
+    kggxs, gdrss, jjcgs, sdgds = [], [], [], []
     # eastmoney（东方财富）
     if source == spcon.SHAREHOLDERS_STOCKS_SOURCE[0]:
         kggx = response.json().get('kggx')
         gdrs = response.json().get('gdrs')
         jjcg = response.json().get('jjcg')
+        sdgd = response.json().get('sdgd')
         if kggx:
             data = {}
             data['symbol'] = symbol
@@ -90,7 +91,19 @@ def parse_shareholders_data(response, symbol, per_symbol, source):
                 data['zzgbb'] = jj[i].get('zzgbb')
                 data['zltb'] = jj[i].get('zltb')
                 jjcgs.append(data)
-    return kggxs, gdrss, jjcgs
+        if sdgd:
+            rq = sdgd[0].get('rq')
+            gd = sdgd[0].get('sdgd')
+            for i in range(len(gd)):
+                data = {}
+                data['rq'] = rq
+                data['symbol'] = symbol
+                data['gdmc'] = gd[i].get('gdmc')
+                data['gflx'] = gd[i].get('gflx')
+                data['cgs'] = gd[i].get('cgs')
+                data['zltgbcgbl'] = gd[i].get('zltgbcgbl')
+                sdgds.append(data)
+    return kggxs, gdrss, jjcgs, sdgds
 
 
 if __name__ == '__main__':

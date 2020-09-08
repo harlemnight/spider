@@ -33,25 +33,33 @@ def get_all_ready_stocks_shareholders():
 
 
 def insert_shareholders(symbol, pre_symbol):
-    res = sf.get_shareholders(symbol, pre_symbol)
-    if res is not None:
-        try:
-            con = db.get_dbcon()
-            cursor = con.cursor()
-            cursor.executemany(sql.SQL_DELETE_STOCKS_SJKZR, res)
-            cursor.executemany(sql.SQL_INSERT_STOCKS_SJKZR, res)
-            rowcount = str(cursor.rowcount)
-            con.commit()
-            print('insert shareholder  successfully rowcount: ' + rowcount)
-            return rowcount
-        except Exception as e:
-            db.rollback(con)
-            print('insert shareholder failed :' + str(e))
-            return 0
-        finally:
+    kggxs, gdrss, jjcgs ,sdgds = sf.get_shareholders(symbol, pre_symbol)
+    try:
+        con = db.get_dbcon()
+        cursor = con.cursor()
+        params = {'symbol': symbol}
+        if kggxs is not None:
+            cursor.execute(sql.SQL_DELETE_STOCKS_SJKZR, params)
+            cursor.executemany(sql.SQL_INSERT_STOCKS_SJKZR, kggxs)
+        if gdrss is not None:
+            cursor.execute(sql.SQL_DELETE_STOCKS_GDRS, params)
+            cursor.executemany(sql.SQL_INSERT_STOCKS_GDRS, gdrss)
+        if jjcgs is not None:
+            cursor.execute(sql.SQL_DELETE_STOCKS_JJCG, params)
+            cursor.executemany(sql.SQL_INSERT_STOCKS_JJCG, jjcgs)
+        if sdgds is not None:
+            cursor.execute(sql.SQL_DELETE_STOCKS_SDGD, params)
+            cursor.executemany(sql.SQL_INSERT_STOCKS_SDGD, sdgds)
+        rowcount = str(cursor.rowcount)
+        con.commit()
+        print('insert shareholder  successfully rowcount: ' + rowcount)
+        return rowcount
+    except Exception as e:
+        db.rollback(con)
+        print('insert shareholder failed :' + str(e))
+        return 0
+    finally:
             db.close_dbcon(con)
-    else:
-        print('shareholder is None')
     return 0
 
 

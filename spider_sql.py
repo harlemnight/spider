@@ -67,9 +67,9 @@ SQL_INSERT_STOCKS_SJKZR = 'insert into t_china_stock_shareholder_sjkzr(symbol, s
                                   '(%(symbol)s,%(sjkzr)s,%(cgbl)s)'
 # 股东人数
 SQL_DELETE_STOCKS_GDRS = 'delete from t_china_stock_shareholder_gdrs where symbol = %(symbol)s '
-SQL_INSERT_STOCKS_GDRS = 'insert into t_china_stock_shareholder_gdrs(rq,symbol,gdrs,gdrs_jsqbh,cmjzd,gj,ricgje,rjltg,' \
+SQL_INSERT_STOCKS_GDRS = 'insert into t_china_stock_shareholder_gdrs(rq,symbol,gdrs,gdrs_jsqbh,cmjzd,gj,rjcgje,rjltg,' \
                          'rjltg_jsqbh,qsdgdcghj,qsdltgdcghj) values (%(rq)s,%(symbol)s,%(gdrs)s,%(gdrs_jsqbh)s,' \
-                         '%(cmjzd)s,%(gj)s,%(ricgje)s,%(rjltg)s,%(rjltg_jsqbh)s,%(qsdgdcghj)s,%(qsdltgdcghj)s)'
+                         '%(cmjzd)s,%(gj)s,%(rjcgje)s,%(rjltg)s,%(rjltg_jsqbh)s,%(qsdgdcghj)s,%(qsdltgdcghj)s)'
 # 基金持股
 SQL_DELETE_STOCKS_JJCG = 'delete from t_china_stock_shareholder_jjcg where symbol = %(symbol)s '
 SQL_INSERT_STOCKS_JJCG = 'insert into t_china_stock_shareholder_jjcg(rq,jjdm,jjmc,cgs,cgsz,zzgbb,zltb,symbol) values' \
@@ -77,8 +77,8 @@ SQL_INSERT_STOCKS_JJCG = 'insert into t_china_stock_shareholder_jjcg(rq,jjdm,jjm
 
 # 十大股东
 SQL_DELETE_STOCKS_SDGD = 'delete from t_china_stock_shareholder_sdgd where symbol = %(symbol)s '
-SQL_INSERT_STOCKS_SDGD = 'insert into t_china_stock_shareholder_sdgd(symbol, sjkzr, cgbl) values' \
-                                  '(%(symbol)s,%(sjkzr)s,%(cgbl)s)'
+SQL_INSERT_STOCKS_SDGD = 'insert into t_china_stock_shareholder_sdgd(rq,symbol,gdmc,gflx,cgs,zltgbcgbl) values' \
+                                  '(%(rq)s,%(symbol)s,%(gdmc)s,%(gflx)s,%(cgs)s,%(zltgbcgbl)s)'
 
 
 
