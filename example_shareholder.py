@@ -17,16 +17,16 @@ def get_all_ready_stocks_shareholders():
         for row in cursor.fetchall():
             data = {}
             data['symbol'] = row[0]
-            data['neteasy_symbol'] = row[1]
+            data['pre_symbol'] = row[1]
             res.append(data)
         if len(res) > 0:
-            print('get all ' + security_type + ' successfully from database')
+            print('get all ' + security_type + ' list successfully from database')
             return res
         else:
             return None
     except Exception as e:
         db.rollback(con)
-        print('get all ' + security_type + ' failed :' + str(e))
+        print('get all ' + security_type + ' list failed :' + str(e))
         return None
     finally:
         db.close_dbcon(con)
@@ -38,28 +38,30 @@ def insert_shareholders(symbol, pre_symbol):
         con = db.get_dbcon()
         cursor = con.cursor()
         params = {'symbol': symbol}
+        rownum = 0
         if kggxs is not None:
             cursor.execute(sql.SQL_DELETE_STOCKS_SJKZR, params)
             cursor.executemany(sql.SQL_INSERT_STOCKS_SJKZR, kggxs)
+            rownum += cursor.rowcount
         if gdrss is not None:
             cursor.execute(sql.SQL_DELETE_STOCKS_GDRS, params)
             cursor.executemany(sql.SQL_INSERT_STOCKS_GDRS, gdrss)
+            rownum += cursor.rowcount
         if jjcgs is not None:
             cursor.execute(sql.SQL_DELETE_STOCKS_JJCG, params)
             cursor.executemany(sql.SQL_INSERT_STOCKS_JJCG, jjcgs)
+            rownum += cursor.rowcount
         if sdgds is not None:
             cursor.execute(sql.SQL_DELETE_STOCKS_SDGD, params)
             cursor.executemany(sql.SQL_INSERT_STOCKS_SDGD, sdgds)
-        rowcount = str(cursor.rowcount)
+            rownum += cursor.rowcount
         con.commit()
-        print('insert shareholder  successfully rowcount: ' + rowcount)
-        return rowcount
+        return rownum
     except Exception as e:
         db.rollback(con)
-        print('insert shareholder failed :' + str(e))
         return 0
     finally:
-            db.close_dbcon(con)
+        db.close_dbcon(con)
     return 0
 
 
@@ -81,4 +83,4 @@ def init_shareholders():
 
 
 if __name__ == '__main__':
-    insert_shareholders('600519', 'SH600519')
+    init_shareholders()
