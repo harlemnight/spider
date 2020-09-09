@@ -107,7 +107,8 @@ def parse_shareholders_data(response, symbol, per_symbol, source):
 
 
 if __name__ == '__main__':
-    kggxs, gdrss ,jjcgs= get_shareholders('600519', 'SH600519')
+    kggxs, gdrss ,jjcgs, sdgds= get_shareholders('600519', 'SH600519')
     print(kggxs)
     print(gdrss)
     print(jjcgs)
+    print(sdgds)

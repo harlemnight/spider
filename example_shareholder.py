@@ -59,6 +59,7 @@ def insert_shareholders(symbol, pre_symbol):
         return rownum
     except Exception as e:
         db.rollback(con)
+        print('insert ' + symbol + ' shareholder failed' + str(e))
         return 0
     finally:
         db.close_dbcon(con)
@@ -78,9 +79,10 @@ def init_shareholders():
             status = 'y' if rnt else 'n'
             insert_logger(p_security_type, p_symbol, 'init_shareholder', status, 'shareholder',
                           p_end_date, p_batch_number, rnt, 'init shareholders')
-            time.sleep(0.5)
+            time.sleep(1)
     print('init shareholder end')
 
 
 if __name__ == '__main__':
-    init_shareholders()
+    insert_shareholders('000002', 'SZ000002')
+    #init_shareholders()
