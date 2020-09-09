@@ -12,7 +12,7 @@
  Target Server Version : 120003
  File Encoding         : 65001
 
- Date: 06/09/2020 09:41:46
+ Date: 09/09/2020 21:59:01
 */
 
 
@@ -61,10 +61,10 @@ CREATE TABLE "public"."t_china_security_market" (
 )
 ;
 COMMENT ON COLUMN "public"."t_china_security_market"."pre_symbol" IS '标的代码前缀';
-COMMENT ON COLUMN "public"."t_china_security_market"."market" IS '市场代码历史网易';
+COMMENT ON COLUMN "public"."t_china_security_market"."market" IS '市场代码用于获取网易股票历史价格行情用';
 COMMENT ON COLUMN "public"."t_china_security_market"."market_name" IS '市场名称';
 COMMENT ON COLUMN "public"."t_china_security_market"."type" IS '标的类型';
-COMMENT ON COLUMN "public"."t_china_security_market"."market_lx" IS '市场代码标准东财';
+COMMENT ON COLUMN "public"."t_china_security_market"."market_lx" IS '市场代码用于其他使用SH,SZ的地方如东财';
 
 -- ----------------------------
 -- Table structure for t_china_stock_concept_10jqka
@@ -75,6 +75,8 @@ CREATE TABLE "public"."t_china_stock_concept_10jqka" (
   "concept_name" varchar(300) COLLATE "pg_catalog"."default"
 )
 ;
+COMMENT ON COLUMN "public"."t_china_stock_concept_10jqka"."concept_dm" IS '概念代码';
+COMMENT ON COLUMN "public"."t_china_stock_concept_10jqka"."concept_name" IS '概念名字';
 
 -- ----------------------------
 -- Table structure for t_china_stock_concept_10jqka_dzb
@@ -85,6 +87,8 @@ CREATE TABLE "public"."t_china_stock_concept_10jqka_dzb" (
   "symbol" varchar(30) COLLATE "pg_catalog"."default"
 )
 ;
+COMMENT ON COLUMN "public"."t_china_stock_concept_10jqka_dzb"."concept_dm" IS '概念代码';
+COMMENT ON COLUMN "public"."t_china_stock_concept_10jqka_dzb"."symbol" IS '股票代码';
 
 -- ----------------------------
 -- Table structure for t_china_stock_industry_sw
@@ -97,6 +101,10 @@ CREATE TABLE "public"."t_china_stock_industry_sw" (
   "lvl" varchar(2) COLLATE "pg_catalog"."default"
 )
 ;
+COMMENT ON COLUMN "public"."t_china_stock_industry_sw"."hy_dm" IS '申万行业代码';
+COMMENT ON COLUMN "public"."t_china_stock_industry_sw"."hymc" IS '申万行业名称';
+COMMENT ON COLUMN "public"."t_china_stock_industry_sw"."sjhy_dm" IS '上级行业代码';
+COMMENT ON COLUMN "public"."t_china_stock_industry_sw"."lvl" IS '层级';
 
 -- ----------------------------
 -- Table structure for t_china_stock_industry_sw_dzb
@@ -107,6 +115,71 @@ CREATE TABLE "public"."t_china_stock_industry_sw_dzb" (
   "symbol" varchar(30) COLLATE "pg_catalog"."default"
 )
 ;
+COMMENT ON COLUMN "public"."t_china_stock_industry_sw_dzb"."hy_dm" IS '行业代码';
+COMMENT ON COLUMN "public"."t_china_stock_industry_sw_dzb"."symbol" IS '股票代码';
+
+-- ----------------------------
+-- Table structure for t_china_stock_shareholder_gdrs
+-- ----------------------------
+DROP TABLE IF EXISTS "public"."t_china_stock_shareholder_gdrs";
+CREATE TABLE "public"."t_china_stock_shareholder_gdrs" (
+  "rq" date,
+  "symbol" varchar(30) COLLATE "pg_catalog"."default",
+  "gdrs" varchar(30) COLLATE "pg_catalog"."default",
+  "gdrs_jsqbh" varchar(30) COLLATE "pg_catalog"."default",
+  "cmjzd" varchar(30) COLLATE "pg_catalog"."default",
+  "gj" numeric(10,6),
+  "rjcgje" varchar(30) COLLATE "pg_catalog"."default",
+  "rjltg" varchar(30) COLLATE "pg_catalog"."default",
+  "rjltg_jsqbh" varchar(30) COLLATE "pg_catalog"."default",
+  "qsdgdcghj" numeric(30,6),
+  "qsdltgdcghj" numeric(30,6)
+)
+;
+
+-- ----------------------------
+-- Table structure for t_china_stock_shareholder_jjcg
+-- ----------------------------
+DROP TABLE IF EXISTS "public"."t_china_stock_shareholder_jjcg";
+CREATE TABLE "public"."t_china_stock_shareholder_jjcg" (
+  "rq" date,
+  "jjdm" varchar(30) COLLATE "pg_catalog"."default",
+  "jjmc" varchar(255) COLLATE "pg_catalog"."default",
+  "cgs" varchar(100) COLLATE "pg_catalog"."default",
+  "cgsz" varchar(100) COLLATE "pg_catalog"."default",
+  "zzgbb" varchar(30) COLLATE "pg_catalog"."default",
+  "zltb" varchar(30) COLLATE "pg_catalog"."default",
+  "symbol" varchar(30) COLLATE "pg_catalog"."default"
+)
+;
+
+-- ----------------------------
+-- Table structure for t_china_stock_shareholder_sdgd
+-- ----------------------------
+DROP TABLE IF EXISTS "public"."t_china_stock_shareholder_sdgd";
+CREATE TABLE "public"."t_china_stock_shareholder_sdgd" (
+  "rq" date,
+  "symbol" varchar(30) COLLATE "pg_catalog"."default",
+  "gdmc" varchar(300) COLLATE "pg_catalog"."default",
+  "gflx" varchar(255) COLLATE "pg_catalog"."default",
+  "cgs" varchar(100) COLLATE "pg_catalog"."default",
+  "zltgbcgbl" varchar(30) COLLATE "pg_catalog"."default"
+)
+;
+
+-- ----------------------------
+-- Table structure for t_china_stock_shareholder_sjkzr
+-- ----------------------------
+DROP TABLE IF EXISTS "public"."t_china_stock_shareholder_sjkzr";
+CREATE TABLE "public"."t_china_stock_shareholder_sjkzr" (
+  "symbol" varchar(30) COLLATE "pg_catalog"."default",
+  "sjkzr" varchar(350) COLLATE "pg_catalog"."default",
+  "cgbl" varchar(10) COLLATE "pg_catalog"."default"
+)
+;
+COMMENT ON COLUMN "public"."t_china_stock_shareholder_sjkzr"."symbol" IS '股票代码';
+COMMENT ON COLUMN "public"."t_china_stock_shareholder_sjkzr"."sjkzr" IS '实际控制人';
+COMMENT ON COLUMN "public"."t_china_stock_shareholder_sjkzr"."cgbl" IS '持股比例';
 
 -- ----------------------------
 -- Table structure for t_china_stock_trade_1990_2000
