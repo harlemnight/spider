@@ -60,8 +60,7 @@ SQL_GET_STOCK_LIST_SHAREHOLDER = 'select l.symbol,t.market_lx||l.symbol pre_symb
                      ' t_china_security_market t  ' \
                      'where 1=1 and substr(l.symbol,1,3) = t.pre_symbol and l.type = \'stock\'' \
                      ' and not exists (  select null from t_xt_logger_mx mx where mx.symbol = l.symbol' \
-                     ' and mx.security_type = \'stock\' and mx.operation = \'init_shareholder\' )' \
-                     ' and l.symbol = \'600519\' '
+                     ' and mx.security_type = \'stock\' and mx.operation = \'init_shareholder\' )'
 # 实际控制人
 SQL_DELETE_STOCKS_SJKZR = 'delete from t_china_stock_shareholder_sjkzr where symbol = %(symbol)s '
 SQL_INSERT_STOCKS_SJKZR = 'insert into t_china_stock_shareholder_sjkzr(symbol, sjkzr, cgbl) values' \
