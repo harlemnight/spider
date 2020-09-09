@@ -146,7 +146,7 @@ def init_history_stock_price():
             status = 'y' if rnt else 'n'
             insert_logger(p_security_type, p_symbol, 'init_price', status, 'history_price',
                           p_end_date, p_batch_number, rnt, 'init stock price')
-            time.sleep(1)
+            time.sleep(0.5)
     print('init history stock price end')
 
 
@@ -208,7 +208,7 @@ def init_industry_stocks():
             rnt = insert_industry_stocks(hy_dm)
             status = 'y' if rnt else 'n'
             insert_logger('stock', hy_dm, 'init_hy', status, 'sw_hy', p_end_date, p_batch_number, rnt, 'init hy dzb')
-            time.sleep(1)
+            time.sleep(0.5)
 
 
 def init_concept_stocks():
@@ -222,7 +222,7 @@ def init_concept_stocks():
             status = 'y' if rnt else 'n'
             insert_logger('stock', concept_dm, 'init_concept', status, '10jqka_concept', p_end_date, p_batch_number,
                           rnt, 'init concept dzb')
-            time.sleep(1)
+            time.sleep(0.5)
 
 
 def insert_concept_stocks(concept_dm):

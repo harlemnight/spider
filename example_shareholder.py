@@ -78,7 +78,7 @@ def init_shareholders():
             status = 'y' if rnt else 'n'
             insert_logger(p_security_type, p_symbol, 'init_shareholder', status, 'shareholder',
                           p_end_date, p_batch_number, rnt, 'init shareholders')
-            time.sleep(1)
+            time.sleep(0.5)
     print('init shareholder end')
 
 
