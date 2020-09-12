@@ -12,7 +12,7 @@
  Target Server Version : 120003
  File Encoding         : 65001
 
- Date: 09/09/2020 21:59:01
+ Date: 12/09/2020 14:42:25
 */
 
 
@@ -128,12 +128,12 @@ CREATE TABLE "public"."t_china_stock_shareholder_gdrs" (
   "gdrs" varchar(30) COLLATE "pg_catalog"."default",
   "gdrs_jsqbh" varchar(30) COLLATE "pg_catalog"."default",
   "cmjzd" varchar(30) COLLATE "pg_catalog"."default",
-  "gj" numeric(10,6),
+  "gj" varchar(30) COLLATE "pg_catalog"."default",
   "rjcgje" varchar(30) COLLATE "pg_catalog"."default",
   "rjltg" varchar(30) COLLATE "pg_catalog"."default",
   "rjltg_jsqbh" varchar(30) COLLATE "pg_catalog"."default",
-  "qsdgdcghj" numeric(30,6),
-  "qsdltgdcghj" numeric(30,6)
+  "qsdgdcghj" varchar(30) COLLATE "pg_catalog"."default",
+  "qsdltgdcghj" varchar(30) COLLATE "pg_catalog"."default"
 )
 ;
 
@@ -1327,6 +1327,34 @@ UNION ALL
 -- Primary Key structure for table t_china_index_1990_2010
 -- ----------------------------
 ALTER TABLE "public"."t_china_index_1990_2010" ADD CONSTRAINT "pk" PRIMARY KEY ("idd");
+
+-- ----------------------------
+-- Indexes structure for table t_china_stock_shareholder_gdrs
+-- ----------------------------
+CREATE INDEX "idx_t_china_stock_shareholder_gdrs_symbol" ON "public"."t_china_stock_shareholder_gdrs" USING btree (
+  "symbol" COLLATE "pg_catalog"."default" "pg_catalog"."text_ops" ASC NULLS LAST
+);
+
+-- ----------------------------
+-- Indexes structure for table t_china_stock_shareholder_jjcg
+-- ----------------------------
+CREATE INDEX "idx_t_china_stock_shareholder_jjcg_symbol" ON "public"."t_china_stock_shareholder_jjcg" USING btree (
+  "symbol" COLLATE "pg_catalog"."default" "pg_catalog"."text_ops" ASC NULLS LAST
+);
+
+-- ----------------------------
+-- Indexes structure for table t_china_stock_shareholder_sdgd
+-- ----------------------------
+CREATE INDEX "idx_t_china_stock_shareholder_sdgd_symbol" ON "public"."t_china_stock_shareholder_sdgd" USING btree (
+  "symbol" COLLATE "pg_catalog"."default" "pg_catalog"."text_ops" ASC NULLS LAST
+);
+
+-- ----------------------------
+-- Indexes structure for table t_china_stock_shareholder_sjkzr
+-- ----------------------------
+CREATE INDEX "idx_t_china_stock_shareholder_sjkzr_symbol" ON "public"."t_china_stock_shareholder_sjkzr" USING btree (
+  "symbol" COLLATE "pg_catalog"."default" "pg_catalog"."text_ops" ASC NULLS LAST
+);
 
 -- ----------------------------
 -- Indexes structure for table t_china_stock_trade_1990_2000
