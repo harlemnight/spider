@@ -41,8 +41,9 @@ def insert_finance_main(symbol, pre_symbol):
         rownum = 0
         if res is not None:
             cursor.execute(sql.SQL_DELETE_STOCKS_FINANCE_MAIN, params)
-            cursor.executemany(sql.SQL_DELETE_STOCKS_FINANCE_MAIN, res)
+            cursor.executemany(sql.SQL_INSERT_STOCKS_FINANCE_MAIN, res)
             rownum += cursor.rowcount
+            print('asdf')
         con.commit()
         return rownum
     except Exception as e:
@@ -106,7 +107,7 @@ def insert_finance_dupont(symbol, pre_symbol):
         rownum = 0
         if finance_mains is not None:
             cursor.execute(sql.SQL_DELETE_STOCKS_FINANCE_DUPONT, params)
-            cursor.executemany(sql.SQL_DELETE_STOCKS_FINANCE_DUPONT, finance_mains)
+            cursor.executemany(sql.SQL_INSERT_STOCKS_FINANCE_DUPONT, finance_mains)
             rownum += cursor.rowcount
         con.commit()
         return rownum

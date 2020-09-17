@@ -75,7 +75,7 @@ def init_shareholders():
         for res in res_data:
             p_symbol = res['symbol']
             p_pre_symbol = res['pre_symbol']
-            rnt = insert_shareholders(p_symbol,p_pre_symbol)
+            rnt = insert_shareholders(p_symbol, p_pre_symbol)
             status = 'y' if rnt else 'n'
             insert_logger(p_security_type, p_symbol, 'init_shareholder', status, 'shareholder',
                           p_end_date, p_batch_number, rnt, 'init shareholders')
