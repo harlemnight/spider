@@ -83,5 +83,29 @@ SQL_INSERT_STOCKS_SDGD = 'insert into t_china_stock_shareholder_sdgd(rq,symbol,g
 
 
 ###################################财务数据####################################################
+# 主要指标
+SQL_GET_STOCK_LIST_FINANCE_MAIN = 'select l.symbol,t.market_lx||l.symbol pre_symbol from t_china_security_list l,' \
+                     ' t_china_security_market t  ' \
+                     'where 1=1 and substr(l.symbol,1,3) = t.pre_symbol and l.type = \'stock\'' \
+                     ' and not exists (  select null from t_xt_logger_mx mx where mx.symbol = l.symbol' \
+                     ' and mx.security_type = \'stock\' and mx.operation = \'init_finance_main\' )'
+
+# 主要指标
+SQL_DELETE_STOCKS_FINANCE_MAIN = 'delete from t_china_stock_finance_main where symbol = %(symbol)s '
+SQL_INSERT_STOCKS_FINANCE_MAIN = 'insert into t_china_stock_finance_main(symbol, sjkzr, cgbl) values' \
+                                  '(%(symbol)s,%(sjkzr)s,%(cgbl)s)'
+
+
+# 杜邦指标
+SQL_GET_STOCK_LIST_FINANCE_DUPONT = 'select l.symbol,t.market_lx||l.symbol pre_symbol from t_china_security_list l,' \
+                     ' t_china_security_market t  ' \
+                     'where 1=1 and substr(l.symbol,1,3) = t.pre_symbol and l.type = \'stock\'' \
+                     ' and not exists (  select null from t_xt_logger_mx mx where mx.symbol = l.symbol' \
+                     ' and mx.security_type = \'stock\' and mx.operation = \'init_finance_dupont\' )'
+# 杜邦指标
+SQL_DELETE_STOCKS_FINANCE_DUPONT = 'delete from t_china_stock_finance_dupont where symbol = %(symbol)s '
+SQL_INSERT_STOCKS_FINANCE_DUPONT = 'insert into t_china_stock_finance_dupont(symbol, sjkzr, cgbl) values' \
+                                  '(%(symbol)s,%(sjkzr)s,%(cgbl)s)'
+
 
 ###################################基金####################################################
