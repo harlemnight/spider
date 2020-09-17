@@ -182,6 +182,6 @@ def parse_finance_dupont_data(response, symbol, per_symbol, source):
 
 
 if __name__ == '__main__':
-    #ms = get_finance_main('000505', 'SZ000505')
-    ms = get_finance_dupont('000505', 'SZ000505')
+    ms = get_finance_main('000505', 'SZ000505')
+    #ms = get_finance_dupont('000505', 'SZ000505')
     print(ms)
