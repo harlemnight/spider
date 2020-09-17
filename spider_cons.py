@@ -170,3 +170,31 @@ SHAREHOLDERS_STOCKS = {
     }
   }
 }
+
+# ######################F10财务数据主要指标################################################################################
+FINANCE_MAIN_STOCKS_SOURCE_IDX = 0
+FINANCE_MAIN_STOCKS_SOURCE = ['eastmoney']
+FINANCE_MAIN_STOCKS = {
+  'stock': {
+    'eastmoney': {
+        'url': 'http://f10.eastmoney.com/NewFinanceAnalysis/MainTargetAjax?type=0&code=%s',
+        'params': {
+        },
+        'headers': HEADERS
+    }
+  }
+}
+
+# ######################F10财务数据杜邦分析################################################################################
+FINANCE_DUPONT_STOCKS_SOURCE_IDX = 0
+FINANCE_DUPONT_STOCKS_SOURCE = ['eastmoney']
+FINANCE_DUPONT_STOCKS = {
+  'stock': {
+    'eastmoney': {
+        'url': 'http://f10.eastmoney.com/NewFinanceAnalysis/DubangAnalysisAjax?code=%s',
+        'params': {
+        },
+        'headers': HEADERS
+    }
+  }
+}
