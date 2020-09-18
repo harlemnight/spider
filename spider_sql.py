@@ -92,9 +92,17 @@ SQL_GET_STOCK_LIST_FINANCE_MAIN = 'select l.symbol,t.market_lx||l.symbol pre_sym
 
 # 主要指标
 SQL_DELETE_STOCKS_FINANCE_MAIN = 'delete from t_china_stock_finance_main where symbol = %(symbol)s '
-SQL_INSERT_STOCKS_FINANCE_MAIN = 'insert into t_china_stock_finance_main(symbol, sjkzr, cgbl) values' \
-                                  '(%(symbol)s,%(sjkzr)s,%(cgbl)s)'
-
+SQL_INSERT_STOCKS_FINANCE_MAIN = 'INSERT INTO t_china_stock_finance_main(symbol, chzzts, rq, gsjlr, gsjlrgdhbzz,' \
+                                 ' gsjlrtbzz, jbmgsy, jll, jqjzcsyl, jyxjlyysr, kfjlr, kfjlrgdhbzz, kfjlrtbzz,' \
+                                 ' kfmgsy, ldbl, ldzczfz, mggjj, mgjyxjl, mgjzc, mgwfply, mll, mlr, sdbl, sjsl,' \
+                                 ' tbjzcsyl, tbzzcsyl, xsmgsy, xsxjlyysr, yskyysr, yszkzzts, yyzsr, yyzsrgdhbzz,' \
+                                 ' yyzsrtbzz, zcfzl, zzczzy) VALUES (%(symbol)s, %(chzzts)s, %(rq)s, %(gsjlr)s,' \
+                                 ' %(gsjlrgdhbzz)s, %(gsjlrtbzz)s, %(jbmgsy)s, %(jll)s, %(jqjzcsyl)s, ' \
+                                 '%(jyxjlyysr)s, %(kfjlr)s, %(kfjlrgdhbzz)s, %(kfjlrtbzz)s, %(kfmgsy)s,' \
+                                 ' %(ldbl)s, %(ldzczfz)s, %(mggjj)s, %(mgjyxjl)s, %(mgjzc)s, %(mgwfply)s,' \
+                                 ' %(mll)s, %(mlr)s, %(sdbl)s, %(sjsl)s, %(tbjzcsyl)s, %(tbzzcsyl)s,' \
+                                 ' %(xsmgsy)s, %(xsxjlyysr)s, %(yskyysr)s, %(yszkzzts)s, %(yyzsr)s,' \
+                                 ' %(yyzsrgdhbzz)s, %(yyzsrtbzz)s, %(zcfzl)s, %(zzczzy)s)'
 
 # 杜邦指标
 SQL_GET_STOCK_LIST_FINANCE_DUPONT = 'select l.symbol,t.market_lx||l.symbol pre_symbol from t_china_security_list l,' \
@@ -104,8 +112,19 @@ SQL_GET_STOCK_LIST_FINANCE_DUPONT = 'select l.symbol,t.market_lx||l.symbol pre_s
                      ' and mx.security_type = \'stock\' and mx.operation = \'init_finance_dupont\' )'
 # 杜邦指标
 SQL_DELETE_STOCKS_FINANCE_DUPONT = 'delete from t_china_stock_finance_dupont where symbol = %(symbol)s '
-SQL_INSERT_STOCKS_FINANCE_DUPONT = 'insert into t_china_stock_finance_dupont(symbol, sjkzr, cgbl) values' \
-                                  '(%(symbol)s,%(sjkzr)s,%(cgbl)s)'
+SQL_INSERT_STOCKS_FINANCE_DUPONT = 'INSERT INTO t_china_stock_finance_dupont(symbol, rq, cbze, ch, cqdtfy, cqgqtz,' \
+                                   ' cwfy, cyzdqtz, dysdszc, fldzc, fzze, gdzc, glfy, gsmgsgddjlr, gyjzbdsy,' \
+                                   ' hbzj, jlr, jyxjrzc, jzcsyl, kfzc, kgcsjrzc, ldzc, qjfy, qtfldzc, qtldzc, ' \
+                                   'qtysk, qycs, sdsfy, srze, sy, tzsy, tzxfdc, wxzc, xsfy, yfzk, yszk, yycb, ' \
+                                   'yyjlrl, yysjjfj, yysr, yywsr, yywzc, zcfzl, zcjzss, zcze, zjgc, zzcjll, ' \
+                                   'zzczzl) VALUES (%(symbol)s, %(rq)s, %(cbze)s, %(ch)s, %(cqdtfy)s, %(cqgqtz)s,' \
+                                   ' %(cwfy)s, %(cyzdqtz)s, %(dysdszc)s, %(fldzc)s, %(fzze)s, %(gdzc)s, %(glfy)s,' \
+                                   ' %(gsmgsgddjlr)s, %(gyjzbdsy)s, %(hbzj)s, %(jlr)s, %(jyxjrzc)s, %(jzcsyl)s,' \
+                                   ' %(kfzc)s, %(kgcsjrzc)s, %(ldzc)s, %(qjfy)s, %(qtfldzc)s, %(qtldzc)s, ' \
+                                   '%(qtysk)s, %(qycs)s, %(sdsfy)s, %(srze)s, %(sy)s, %(tzsy)s, %(tzxfdc)s,' \
+                                   ' %(wxzc)s, %(xsfy)s, %(yfzk)s, %(yszk)s, %(yycb)s, %(yyjlrl)s, %(yysjjfj)s,' \
+                                   ' %(yysr)s, %(yywsr)s, %(yywzc)s, %(zcfzl)s, %(zcjzss)s, %(zcze)s, %(zjgc)s, ' \
+                                   '%(zzcjll)s, %(zzczzl)s)'
 
 
 ###################################基金####################################################

@@ -43,7 +43,6 @@ def insert_finance_main(symbol, pre_symbol):
             cursor.execute(sql.SQL_DELETE_STOCKS_FINANCE_MAIN, params)
             cursor.executemany(sql.SQL_INSERT_STOCKS_FINANCE_MAIN, res)
             rownum += cursor.rowcount
-            print('asdf')
         con.commit()
         return rownum
     except Exception as e:
@@ -138,5 +137,5 @@ def init_finance_dupont():
 
 
 if __name__ == '__main__':
-    insert_finance_main('000002', 'SZ000002')
-    # init_finance_main('000002', 'SZ000002')
+    #insert_finance_main('000002', 'SZ000002')
+    insert_finance_dupont('000002', 'SZ000002')
