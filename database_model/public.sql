@@ -12,7 +12,7 @@
  Target Server Version : 120003
  File Encoding         : 65001
 
- Date: 12/09/2020 14:42:25
+ Date: 18/09/2020 17:57:01
 */
 
 
@@ -91,6 +91,184 @@ COMMENT ON COLUMN "public"."t_china_stock_concept_10jqka_dzb"."concept_dm" IS '�
 COMMENT ON COLUMN "public"."t_china_stock_concept_10jqka_dzb"."symbol" IS '股票代码';
 
 -- ----------------------------
+-- Table structure for t_china_stock_finance_dupont
+-- ----------------------------
+DROP TABLE IF EXISTS "public"."t_china_stock_finance_dupont";
+CREATE TABLE "public"."t_china_stock_finance_dupont" (
+  "symbol" varchar(30) COLLATE "pg_catalog"."default",
+  "rq" date,
+  "cbze" varchar(30) COLLATE "pg_catalog"."default",
+  "ch" varchar(30) COLLATE "pg_catalog"."default",
+  "cqdtfy" varchar(30) COLLATE "pg_catalog"."default",
+  "cqgqtz" varchar(30) COLLATE "pg_catalog"."default",
+  "cwfy" varchar(30) COLLATE "pg_catalog"."default",
+  "cyzdqtz" varchar(30) COLLATE "pg_catalog"."default",
+  "dysdszc" varchar(30) COLLATE "pg_catalog"."default",
+  "fldzc" varchar(30) COLLATE "pg_catalog"."default",
+  "fzze" varchar(30) COLLATE "pg_catalog"."default",
+  "gdzc" varchar(30) COLLATE "pg_catalog"."default",
+  "glfy" varchar(30) COLLATE "pg_catalog"."default",
+  "gsmgsgddjlr" varchar(30) COLLATE "pg_catalog"."default",
+  "gyjzbdsy" varchar(30) COLLATE "pg_catalog"."default",
+  "hbzj" varchar(30) COLLATE "pg_catalog"."default",
+  "jlr" varchar(30) COLLATE "pg_catalog"."default",
+  "jyxjrzc" varchar(30) COLLATE "pg_catalog"."default",
+  "jzcsyl" varchar(30) COLLATE "pg_catalog"."default",
+  "kfzc" varchar(30) COLLATE "pg_catalog"."default",
+  "kgcsjrzc" varchar(30) COLLATE "pg_catalog"."default",
+  "ldzc" varchar(30) COLLATE "pg_catalog"."default",
+  "qjfy" varchar(30) COLLATE "pg_catalog"."default",
+  "qtfldzc" varchar(30) COLLATE "pg_catalog"."default",
+  "qtldzc" varchar(30) COLLATE "pg_catalog"."default",
+  "qtysk" varchar(30) COLLATE "pg_catalog"."default",
+  "qycs" varchar(30) COLLATE "pg_catalog"."default",
+  "sdsfy" varchar(30) COLLATE "pg_catalog"."default",
+  "srze" varchar(30) COLLATE "pg_catalog"."default",
+  "sy" varchar(30) COLLATE "pg_catalog"."default",
+  "tzsy" varchar(30) COLLATE "pg_catalog"."default",
+  "tzxfdc" varchar(30) COLLATE "pg_catalog"."default",
+  "wxzc" varchar(30) COLLATE "pg_catalog"."default",
+  "xsfy" varchar(30) COLLATE "pg_catalog"."default",
+  "yfzk" varchar(30) COLLATE "pg_catalog"."default",
+  "yszk" varchar(30) COLLATE "pg_catalog"."default",
+  "yycb" varchar(30) COLLATE "pg_catalog"."default",
+  "yyjlrl" varchar(30) COLLATE "pg_catalog"."default",
+  "yysjjfj" varchar(30) COLLATE "pg_catalog"."default",
+  "yysr" varchar(30) COLLATE "pg_catalog"."default",
+  "yywsr" varchar(30) COLLATE "pg_catalog"."default",
+  "yywzc" varchar(30) COLLATE "pg_catalog"."default",
+  "zcfzl" varchar(30) COLLATE "pg_catalog"."default",
+  "zcjzss" varchar(30) COLLATE "pg_catalog"."default",
+  "zcze" varchar(30) COLLATE "pg_catalog"."default",
+  "zjgc" varchar(30) COLLATE "pg_catalog"."default",
+  "zzcjll" varchar(30) COLLATE "pg_catalog"."default",
+  "zzczzl" varchar(30) COLLATE "pg_catalog"."default"
+)
+;
+COMMENT ON COLUMN "public"."t_china_stock_finance_dupont"."cbze" IS '成本总额';
+COMMENT ON COLUMN "public"."t_china_stock_finance_dupont"."ch" IS '存货';
+COMMENT ON COLUMN "public"."t_china_stock_finance_dupont"."cqdtfy" IS '长期待摊费用';
+COMMENT ON COLUMN "public"."t_china_stock_finance_dupont"."cqgqtz" IS '长期股权投资';
+COMMENT ON COLUMN "public"."t_china_stock_finance_dupont"."cwfy" IS '财务费用';
+COMMENT ON COLUMN "public"."t_china_stock_finance_dupont"."cyzdqtz" IS '持有至到期投资';
+COMMENT ON COLUMN "public"."t_china_stock_finance_dupont"."dysdszc" IS '递延所得税资产';
+COMMENT ON COLUMN "public"."t_china_stock_finance_dupont"."fldzc" IS '非流动资产';
+COMMENT ON COLUMN "public"."t_china_stock_finance_dupont"."fzze" IS '负债总额';
+COMMENT ON COLUMN "public"."t_china_stock_finance_dupont"."gdzc" IS '固定资产';
+COMMENT ON COLUMN "public"."t_china_stock_finance_dupont"."glfy" IS '管理费用';
+COMMENT ON COLUMN "public"."t_china_stock_finance_dupont"."gsmgsgddjlr" IS '归属母公司股东的净利润占比';
+COMMENT ON COLUMN "public"."t_china_stock_finance_dupont"."gyjzbdsy" IS '公允价值变动收益';
+COMMENT ON COLUMN "public"."t_china_stock_finance_dupont"."hbzj" IS '货币资金';
+COMMENT ON COLUMN "public"."t_china_stock_finance_dupont"."jlr" IS '净利润';
+COMMENT ON COLUMN "public"."t_china_stock_finance_dupont"."jyxjrzc" IS '交易性金融资产';
+COMMENT ON COLUMN "public"."t_china_stock_finance_dupont"."jzcsyl" IS '净资产收益率';
+COMMENT ON COLUMN "public"."t_china_stock_finance_dupont"."kfzc" IS '开发支出';
+COMMENT ON COLUMN "public"."t_china_stock_finance_dupont"."kgcsjrzc" IS '可供出售金融资产';
+COMMENT ON COLUMN "public"."t_china_stock_finance_dupont"."ldzc" IS '流动资产';
+COMMENT ON COLUMN "public"."t_china_stock_finance_dupont"."qjfy" IS '期间费用';
+COMMENT ON COLUMN "public"."t_china_stock_finance_dupont"."qtfldzc" IS '其他非流动资产';
+COMMENT ON COLUMN "public"."t_china_stock_finance_dupont"."qtldzc" IS '其他流动资产';
+COMMENT ON COLUMN "public"."t_china_stock_finance_dupont"."qtysk" IS '其他应收款';
+COMMENT ON COLUMN "public"."t_china_stock_finance_dupont"."qycs" IS '权益乘数';
+COMMENT ON COLUMN "public"."t_china_stock_finance_dupont"."sdsfy" IS '所得税费用';
+COMMENT ON COLUMN "public"."t_china_stock_finance_dupont"."srze" IS '收入总额';
+COMMENT ON COLUMN "public"."t_china_stock_finance_dupont"."sy" IS '商誉';
+COMMENT ON COLUMN "public"."t_china_stock_finance_dupont"."tzsy" IS '投资收益';
+COMMENT ON COLUMN "public"."t_china_stock_finance_dupont"."tzxfdc" IS '投资性房地产';
+COMMENT ON COLUMN "public"."t_china_stock_finance_dupont"."wxzc" IS '无形资产';
+COMMENT ON COLUMN "public"."t_china_stock_finance_dupont"."xsfy" IS '销售费用';
+COMMENT ON COLUMN "public"."t_china_stock_finance_dupont"."yfzk" IS '预付账款';
+COMMENT ON COLUMN "public"."t_china_stock_finance_dupont"."yszk" IS '应收账款';
+COMMENT ON COLUMN "public"."t_china_stock_finance_dupont"."yycb" IS '营业成本';
+COMMENT ON COLUMN "public"."t_china_stock_finance_dupont"."yyjlrl" IS '营业净利润率';
+COMMENT ON COLUMN "public"."t_china_stock_finance_dupont"."yysjjfj" IS '营业税金及附加';
+COMMENT ON COLUMN "public"."t_china_stock_finance_dupont"."yysr" IS '营业收入';
+COMMENT ON COLUMN "public"."t_china_stock_finance_dupont"."yywsr" IS '营业外收入';
+COMMENT ON COLUMN "public"."t_china_stock_finance_dupont"."yywzc" IS '营业外支出';
+COMMENT ON COLUMN "public"."t_china_stock_finance_dupont"."zcfzl" IS '资产负债率';
+COMMENT ON COLUMN "public"."t_china_stock_finance_dupont"."zcjzss" IS '资产减值损失';
+COMMENT ON COLUMN "public"."t_china_stock_finance_dupont"."zcze" IS '资产总额';
+COMMENT ON COLUMN "public"."t_china_stock_finance_dupont"."zjgc" IS '在建工程';
+COMMENT ON COLUMN "public"."t_china_stock_finance_dupont"."zzcjll" IS '总资产净利率';
+COMMENT ON COLUMN "public"."t_china_stock_finance_dupont"."zzczzl" IS '总资产周转率';
+
+-- ----------------------------
+-- Table structure for t_china_stock_finance_main
+-- ----------------------------
+DROP TABLE IF EXISTS "public"."t_china_stock_finance_main";
+CREATE TABLE "public"."t_china_stock_finance_main" (
+  "symbol" varchar(30) COLLATE "pg_catalog"."default",
+  "chzzts" varchar(30) COLLATE "pg_catalog"."default",
+  "rq" date,
+  "gsjlr" varchar(30) COLLATE "pg_catalog"."default",
+  "gsjlrgdhbzz" varchar(30) COLLATE "pg_catalog"."default",
+  "gsjlrtbzz" varchar(30) COLLATE "pg_catalog"."default",
+  "jbmgsy" varchar(30) COLLATE "pg_catalog"."default",
+  "jll" varchar(30) COLLATE "pg_catalog"."default",
+  "jqjzcsyl" varchar(30) COLLATE "pg_catalog"."default",
+  "jyxjlyysr" varchar(30) COLLATE "pg_catalog"."default",
+  "kfjlr" varchar(30) COLLATE "pg_catalog"."default",
+  "kfjlrgdhbzz" varchar(30) COLLATE "pg_catalog"."default",
+  "kfjlrtbzz" varchar(30) COLLATE "pg_catalog"."default",
+  "kfmgsy" varchar(30) COLLATE "pg_catalog"."default",
+  "ldbl" varchar(30) COLLATE "pg_catalog"."default",
+  "ldzczfz" varchar(30) COLLATE "pg_catalog"."default",
+  "mggjj" varchar(30) COLLATE "pg_catalog"."default",
+  "mgjyxjl" varchar(30) COLLATE "pg_catalog"."default",
+  "mgjzc" varchar(30) COLLATE "pg_catalog"."default",
+  "mgwfply" varchar(30) COLLATE "pg_catalog"."default",
+  "mll" varchar(30) COLLATE "pg_catalog"."default",
+  "mlr" varchar(30) COLLATE "pg_catalog"."default",
+  "sdbl" varchar(30) COLLATE "pg_catalog"."default",
+  "sjsl" varchar(30) COLLATE "pg_catalog"."default",
+  "tbjzcsyl" varchar(30) COLLATE "pg_catalog"."default",
+  "tbzzcsyl" varchar(30) COLLATE "pg_catalog"."default",
+  "xsmgsy" varchar(30) COLLATE "pg_catalog"."default",
+  "xsxjlyysr" varchar(30) COLLATE "pg_catalog"."default",
+  "yskyysr" varchar(30) COLLATE "pg_catalog"."default",
+  "yszkzzts" varchar(30) COLLATE "pg_catalog"."default",
+  "yyzsr" varchar(30) COLLATE "pg_catalog"."default",
+  "yyzsrgdhbzz" varchar(30) COLLATE "pg_catalog"."default",
+  "yyzsrtbzz" varchar(30) COLLATE "pg_catalog"."default",
+  "zcfzl" varchar(30) COLLATE "pg_catalog"."default",
+  "zzczzy" varchar(30) COLLATE "pg_catalog"."default"
+)
+;
+COMMENT ON COLUMN "public"."t_china_stock_finance_main"."chzzts" IS '存货周转天数(天)';
+COMMENT ON COLUMN "public"."t_china_stock_finance_main"."gsjlr" IS '归属净利润(元)';
+COMMENT ON COLUMN "public"."t_china_stock_finance_main"."gsjlrgdhbzz" IS '归属净利润滚动环比增长(%)';
+COMMENT ON COLUMN "public"."t_china_stock_finance_main"."gsjlrtbzz" IS '归属净利润同比增长(%)';
+COMMENT ON COLUMN "public"."t_china_stock_finance_main"."jbmgsy" IS '基本每股收益(元)';
+COMMENT ON COLUMN "public"."t_china_stock_finance_main"."jll" IS '净利率(%)';
+COMMENT ON COLUMN "public"."t_china_stock_finance_main"."jqjzcsyl" IS '加权净资产收益率(%)';
+COMMENT ON COLUMN "public"."t_china_stock_finance_main"."jyxjlyysr" IS '经营现金流/营业收入';
+COMMENT ON COLUMN "public"."t_china_stock_finance_main"."kfjlr" IS '扣非净利润(元)';
+COMMENT ON COLUMN "public"."t_china_stock_finance_main"."kfjlrgdhbzz" IS '扣非净利润滚动环比增长(%)';
+COMMENT ON COLUMN "public"."t_china_stock_finance_main"."kfjlrtbzz" IS '扣非净利润同比增长(%)';
+COMMENT ON COLUMN "public"."t_china_stock_finance_main"."kfmgsy" IS '扣非每股收益(元)';
+COMMENT ON COLUMN "public"."t_china_stock_finance_main"."ldbl" IS '流动比率';
+COMMENT ON COLUMN "public"."t_china_stock_finance_main"."ldzczfz" IS '流动负债/总负债(%)';
+COMMENT ON COLUMN "public"."t_china_stock_finance_main"."mggjj" IS '每股公积金(元)';
+COMMENT ON COLUMN "public"."t_china_stock_finance_main"."mgjyxjl" IS '每股经营现金流(元)';
+COMMENT ON COLUMN "public"."t_china_stock_finance_main"."mgjzc" IS '每股净资产(元)';
+COMMENT ON COLUMN "public"."t_china_stock_finance_main"."mgwfply" IS '每股未分配利润(元)';
+COMMENT ON COLUMN "public"."t_china_stock_finance_main"."mll" IS '毛利率(%)';
+COMMENT ON COLUMN "public"."t_china_stock_finance_main"."mlr" IS '毛利润(元)';
+COMMENT ON COLUMN "public"."t_china_stock_finance_main"."sdbl" IS '速动比率';
+COMMENT ON COLUMN "public"."t_china_stock_finance_main"."sjsl" IS '实际税率(%)';
+COMMENT ON COLUMN "public"."t_china_stock_finance_main"."tbjzcsyl" IS '摊薄净资产收益率(%)';
+COMMENT ON COLUMN "public"."t_china_stock_finance_main"."tbzzcsyl" IS '摊薄总资产收益率(%)';
+COMMENT ON COLUMN "public"."t_china_stock_finance_main"."xsmgsy" IS '稀释每股收益(元)';
+COMMENT ON COLUMN "public"."t_china_stock_finance_main"."xsxjlyysr" IS '销售现金流/营业收入';
+COMMENT ON COLUMN "public"."t_china_stock_finance_main"."yskyysr" IS '预收款/营业收入';
+COMMENT ON COLUMN "public"."t_china_stock_finance_main"."yszkzzts" IS '应收账款周转天数(天)';
+COMMENT ON COLUMN "public"."t_china_stock_finance_main"."yyzsr" IS '营业总收入(元)';
+COMMENT ON COLUMN "public"."t_china_stock_finance_main"."yyzsrgdhbzz" IS '营业总收入滚动环比增长(%)';
+COMMENT ON COLUMN "public"."t_china_stock_finance_main"."yyzsrtbzz" IS '营业总收入同比增长(%)';
+COMMENT ON COLUMN "public"."t_china_stock_finance_main"."zcfzl" IS '资产负债率(%)';
+COMMENT ON COLUMN "public"."t_china_stock_finance_main"."zzczzy" IS '总资产周转率(次)';
+
+-- ----------------------------
 -- Table structure for t_china_stock_industry_sw
 -- ----------------------------
 DROP TABLE IF EXISTS "public"."t_china_stock_industry_sw";
@@ -136,6 +314,15 @@ CREATE TABLE "public"."t_china_stock_shareholder_gdrs" (
   "qsdltgdcghj" varchar(30) COLLATE "pg_catalog"."default"
 )
 ;
+COMMENT ON COLUMN "public"."t_china_stock_shareholder_gdrs"."gdrs" IS '股东人数(户)';
+COMMENT ON COLUMN "public"."t_china_stock_shareholder_gdrs"."gdrs_jsqbh" IS '股东人数(户)较上期变化(%)';
+COMMENT ON COLUMN "public"."t_china_stock_shareholder_gdrs"."cmjzd" IS '筹码集中度';
+COMMENT ON COLUMN "public"."t_china_stock_shareholder_gdrs"."gj" IS '股价(元)';
+COMMENT ON COLUMN "public"."t_china_stock_shareholder_gdrs"."rjcgje" IS '人均持股金额(元)';
+COMMENT ON COLUMN "public"."t_china_stock_shareholder_gdrs"."rjltg" IS '人均流通股(股)';
+COMMENT ON COLUMN "public"."t_china_stock_shareholder_gdrs"."rjltg_jsqbh" IS '人均流通股(股)较上期变化(%)';
+COMMENT ON COLUMN "public"."t_china_stock_shareholder_gdrs"."qsdgdcghj" IS '前十大股东持股合计(%)';
+COMMENT ON COLUMN "public"."t_china_stock_shareholder_gdrs"."qsdltgdcghj" IS '前十大流通股东持股合计(%)';
 
 -- ----------------------------
 -- Table structure for t_china_stock_shareholder_jjcg
@@ -152,6 +339,13 @@ CREATE TABLE "public"."t_china_stock_shareholder_jjcg" (
   "symbol" varchar(30) COLLATE "pg_catalog"."default"
 )
 ;
+COMMENT ON COLUMN "public"."t_china_stock_shareholder_jjcg"."jjdm" IS '基金代码';
+COMMENT ON COLUMN "public"."t_china_stock_shareholder_jjcg"."jjmc" IS '基金名称';
+COMMENT ON COLUMN "public"."t_china_stock_shareholder_jjcg"."cgs" IS '持股数(股)';
+COMMENT ON COLUMN "public"."t_china_stock_shareholder_jjcg"."cgsz" IS '持仓市值(元)';
+COMMENT ON COLUMN "public"."t_china_stock_shareholder_jjcg"."zzgbb" IS '占总股本比';
+COMMENT ON COLUMN "public"."t_china_stock_shareholder_jjcg"."zltb" IS '占流通比';
+COMMENT ON COLUMN "public"."t_china_stock_shareholder_jjcg"."symbol" IS '占净值比';
 
 -- ----------------------------
 -- Table structure for t_china_stock_shareholder_sdgd
@@ -166,6 +360,10 @@ CREATE TABLE "public"."t_china_stock_shareholder_sdgd" (
   "zltgbcgbl" varchar(30) COLLATE "pg_catalog"."default"
 )
 ;
+COMMENT ON COLUMN "public"."t_china_stock_shareholder_sdgd"."gdmc" IS '股东名称';
+COMMENT ON COLUMN "public"."t_china_stock_shareholder_sdgd"."gflx" IS '股份类型';
+COMMENT ON COLUMN "public"."t_china_stock_shareholder_sdgd"."cgs" IS '持股数(股)';
+COMMENT ON COLUMN "public"."t_china_stock_shareholder_sdgd"."zltgbcgbl" IS '占总股本持股比例';
 
 -- ----------------------------
 -- Table structure for t_china_stock_shareholder_sjkzr
@@ -1327,6 +1525,20 @@ UNION ALL
 -- Primary Key structure for table t_china_index_1990_2010
 -- ----------------------------
 ALTER TABLE "public"."t_china_index_1990_2010" ADD CONSTRAINT "pk" PRIMARY KEY ("idd");
+
+-- ----------------------------
+-- Indexes structure for table t_china_stock_finance_dupont
+-- ----------------------------
+CREATE INDEX "idx_t_china_stock_finance_dupont" ON "public"."t_china_stock_finance_dupont" USING btree (
+  "symbol" COLLATE "pg_catalog"."default" "pg_catalog"."text_ops" ASC NULLS LAST
+);
+
+-- ----------------------------
+-- Indexes structure for table t_china_stock_finance_main
+-- ----------------------------
+CREATE INDEX "idx_t_china_stock_finance_main" ON "public"."t_china_stock_finance_main" USING btree (
+  "symbol" COLLATE "pg_catalog"."default" "pg_catalog"."text_ops" ASC NULLS LAST
+);
 
 -- ----------------------------
 -- Indexes structure for table t_china_stock_shareholder_gdrs
