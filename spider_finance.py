@@ -133,6 +133,8 @@ def parse_finance_dupont_data(response, symbol, per_symbol, source):
             data['cbze'] = items[i].get('cbze')
             data['ch'] = items[i].get('ch')
             data['cqdtfy'] = items[i].get('cqdtfy')
+            data['cqgqtz'] = items[i].get('cqgqtz')
+            data['cwfy'] = items[i].get('cwfy')
             data['cyzdqtz'] = items[i].get('cyzdqtz')
             data['dysdszc'] = items[i].get('dysdszc')
             data['fldzc'] = items[i].get('fldzc')

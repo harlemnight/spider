@@ -98,7 +98,8 @@ def get_all_ready_stocks_finance_dupont():
 
 
 def insert_finance_dupont(symbol, pre_symbol):
-    finance_mains = sf.get_finance_main(symbol, pre_symbol)
+    finance_mains = sf.get_finance_dupont(symbol, pre_symbol)
+    print(finance_mains)
     try:
         con = db.get_dbcon()
         cursor = con.cursor()
