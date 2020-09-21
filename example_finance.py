@@ -99,7 +99,6 @@ def get_all_ready_stocks_finance_dupont():
 
 def insert_finance_dupont(symbol, pre_symbol):
     finance_mains = sf.get_finance_dupont(symbol, pre_symbol)
-    print(finance_mains)
     try:
         con = db.get_dbcon()
         cursor = con.cursor()
@@ -139,4 +138,6 @@ def init_finance_dupont():
 
 if __name__ == '__main__':
     #insert_finance_main('000002', 'SZ000002')
-    insert_finance_dupont('000002', 'SZ000002')
+    #insert_finance_dupont('000002', 'SZ000002')
+    #init_finance_main()
+    init_finance_dupont()
