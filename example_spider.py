@@ -131,12 +131,10 @@ def insert_batch_current_price(security_type):
     return 0
 
 
-def init_history_stock_price():
+def init_history_stock_price(p_start_date, p_end_date):
     p_security_type = 'stock'
     init_stocks()
     res_data = get_all_security_list_by_type(p_security_type)
-    p_start_date = '19900101'
-    p_end_date = dt.datetime.now().strftime('%Y%m%d')
     p_batch_number = time.time() * 10000000
     if res_data:
         for res in res_data:
@@ -298,8 +296,11 @@ def init_concepts():
 
 
 if __name__ == '__main__':
-    init_stocks()  #初始化标股票 每日4点执行
-    insert_batch_current_price('stock') #记录当日股票收盘行情 4点后执行
+    init_stocks()  # 初始化标股票 每日4点执行
+    start_date = '20200929'
+    end_date = '20200929'
+    init_history_stock_price(start_date, end_date)  # 补录历史行情
+    # insert_batch_current_price('stock') #记录当日股票收盘行情 4点后执行
     # init_industry_stocks() #初始化申万二级行业成份股 每周执行一次
     # init_concepts()    #初始化概念 每周执行一次
     # init_concept_stocks() #初始化概念成份股 每周执行一次
