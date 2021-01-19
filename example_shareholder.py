@@ -84,5 +84,5 @@ def init_shareholders():
 
 
 if __name__ == '__main__':
-    #insert_shareholders('000002', 'SZ000002')
+    #insert_shareholders('600519', 'SH600519')
     init_shareholders()

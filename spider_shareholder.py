@@ -64,45 +64,48 @@ def parse_shareholders_data(response, symbol, per_symbol, source):
             data['cgbl'] = kggx.get('cgbl')
             kggxs.append(data)
         if gdrs:
-            data = {}
-            data['rq'] = gdrs[0].get('rq')
-            data['symbol'] = symbol
-            data['cmjzd'] = gdrs[0].get('cmjzd')
-            data['gdrs'] = gdrs[0].get('gdrs')
-            data['gdrs_jsqbh'] = gdrs[0].get('gdrs_jsqbh')
-            data['gj'] = gdrs[0].get('gj')
-            data['qsdgdcghj'] = gdrs[0].get('qsdgdcghj')
-            data['qsdltgdcghj'] = gdrs[0].get('qsdltgdcghj')
-            data['rjcgje'] = gdrs[0].get('rjcgje')
-            data['rjltg'] = gdrs[0].get('rjltg')
-            data['rjltg_jsqbh'] = gdrs[0].get('rjltg_jsqbh')
-            gdrss.append(data)
+            for i in range(len(gdrs)):
+                data = {}
+                data['rq'] = gdrs[i].get('rq')
+                data['symbol'] = symbol
+                data['cmjzd'] = gdrs[i].get('cmjzd')
+                data['gdrs'] = gdrs[i].get('gdrs')
+                data['gdrs_jsqbh'] = gdrs[i].get('gdrs_jsqbh')
+                data['gj'] = gdrs[i].get('gj')
+                data['qsdgdcghj'] = gdrs[i].get('qsdgdcghj')
+                data['qsdltgdcghj'] = gdrs[i].get('qsdltgdcghj')
+                data['rjcgje'] = gdrs[i].get('rjcgje')
+                data['rjltg'] = gdrs[i].get('rjltg')
+                data['rjltg_jsqbh'] = gdrs[i].get('rjltg_jsqbh')
+                gdrss.append(data)
         if jjcg:
-            rq = jjcg[0].get('rq')
-            jj = jjcg[0].get('jjcg')
-            for i in range(len(jj)):
-                data = {}
-                data['rq'] = rq
-                data['symbol'] = symbol
-                data['jjdm'] = jj[i].get('jjdm')
-                data['jjmc'] = jj[i].get('jjmc')
-                data['cgs'] = jj[i].get('cgs')
-                data['cgsz'] = jj[i].get('cgsz')
-                data['zzgbb'] = jj[i].get('zzgbb')
-                data['zltb'] = jj[i].get('zltb')
-                jjcgs.append(data)
+            for i in range(len(jjcg)):
+                rq = jjcg[i].get('rq')
+                jj = jjcg[i].get('jjcg')
+                for i in range(len(jj)):
+                    data = {}
+                    data['rq'] = rq
+                    data['symbol'] = symbol
+                    data['jjdm'] = jj[i].get('jjdm')
+                    data['jjmc'] = jj[i].get('jjmc')
+                    data['cgs'] = jj[i].get('cgs')
+                    data['cgsz'] = jj[i].get('cgsz')
+                    data['zzgbb'] = jj[i].get('zzgbb')
+                    data['zltb'] = jj[i].get('zltb')
+                    jjcgs.append(data)
         if sdgd:
-            rq = sdgd[0].get('rq')
-            gd = sdgd[0].get('sdgd')
-            for i in range(len(gd)):
-                data = {}
-                data['rq'] = rq
-                data['symbol'] = symbol
-                data['gdmc'] = gd[i].get('gdmc')
-                data['gflx'] = gd[i].get('gflx')
-                data['cgs'] = gd[i].get('cgs')
-                data['zltgbcgbl'] = gd[i].get('zltgbcgbl')
-                sdgds.append(data)
+            for i in range(len(sdgd)):
+                rq = sdgd[i].get('rq')
+                gd = sdgd[i].get('sdgd')
+                for i in range(len(gd)):
+                    data = {}
+                    data['rq'] = rq
+                    data['symbol'] = symbol
+                    data['gdmc'] = gd[i].get('gdmc')
+                    data['gflx'] = gd[i].get('gflx')
+                    data['cgs'] = gd[i].get('cgs')
+                    data['zltgbcgbl'] = gd[i].get('zltgbcgbl')
+                    sdgds.append(data)
     return kggxs, gdrss, jjcgs, sdgds
 
 
