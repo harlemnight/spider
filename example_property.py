@@ -1,7 +1,7 @@
 # https://www.jianshu.com/p/3bcb98dd2654
 # https://blog.csdn.net/weixin_43174639/article/details/84643586?utm_medium=distribute.pc_relevant.none-task-blog-BlogCommendFromMachineLearnPai2-1.nonecase&depth_1-utm_source=distribute.pc_relevant.none-task-blog-BlogCommendFromMachineLearnPai2-1.nonecase
 # https://www.cnblogs.com/deartear/p/8616457.html
-import spider_stock as sf
+import spider_property as sf
 import spider_db as db
 import spider_sql as sql
 import datetime as dt

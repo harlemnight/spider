@@ -1,7 +1,7 @@
 # https://www.jianshu.com/p/3bcb98dd2654
 # https://blog.csdn.net/weixin_43174639/article/details/84643586?utm_medium=distribute.pc_relevant.none-task-blog-BlogCommendFromMachineLearnPai2-1.nonecase&depth_1-utm_source=distribute.pc_relevant.none-task-blog-BlogCommendFromMachineLearnPai2-1.nonecase
 # https://www.cnblogs.com/deartear/p/8616457.html
-import spider_stock as sf
+import spider_price as sf
 import spider_db as db
 import spider_sql as sql
 import time
@@ -105,7 +105,6 @@ def insert_batch_current_price(security_type):
 
 def init_history_stock_price(p_start_date, p_end_date):
     p_security_type = 'stock'
-    init_stocks()
     res_data = get_all_security_list_by_type(p_security_type)
     p_batch_number = time.time() * 10000000
     if res_data:
