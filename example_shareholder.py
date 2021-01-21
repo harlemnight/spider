@@ -3,6 +3,7 @@ import spider_sql as sql
 import datetime as dt
 import time
 import spider_shareholder as sf
+import example_logger as log
 
 
 def get_all_ready_stocks_shareholders():
@@ -76,12 +77,12 @@ def init_shareholders():
             p_pre_symbol = res['pre_symbol']
             rnt = insert_shareholders(p_symbol, p_pre_symbol)
             status = 'y' if rnt else 'n'
-            insert_logger(p_security_type, p_symbol, 'init_shareholder', status, 'shareholder',
+            log.insert_logger(p_security_type, p_symbol, 'init_shareholder', status, 'shareholder',
                           p_end_date, p_batch_number, rnt, 'init shareholders')
             time.sleep(1)
     print('init shareholder end')
 
 
 if __name__ == '__main__':
-    #insert_shareholders('600519', 'SH600519')
+    # insert_shareholders('600519', 'SH600519')
     init_shareholders()

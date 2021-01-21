@@ -6,33 +6,7 @@ import spider_db as db
 import spider_sql as sql
 import datetime as dt
 import time
-
-
-def insert_logger(security_type, symbol, operation, status, business,
-                  create_date, batch_number, row_number, message):
-    try:
-        con = db.get_dbcon()
-        cursor = con.cursor()
-        params = {
-                'security_type': security_type,
-                'symbol': symbol,
-                'operation': operation,
-                'status': status,
-                'business': business,
-                'create_date': create_date,
-                'batch_number': batch_number,
-                'row_number': row_number,
-                'message': message
-        }
-        cursor.execute(sql.SQL_INSERT_XT_LOGGER_MX, params)
-        con.commit()
-        print('insert logger ' + security_type + ' ' +
-              symbol + ' ' + operation + ' ' + business + ' ' + status + ' row count ' + str(row_number))
-    except Exception as e:
-        db.rollback(con)
-        print(e)
-    finally:
-        db.close_dbcon(con)
+import example_logger as log
 
 
 def insert_industry_stocks(hy_dm):
@@ -92,7 +66,7 @@ def init_industry_stocks():
             hy_dm = res['hy_dm']
             rnt = insert_industry_stocks(hy_dm)
             status = 'y' if rnt else 'n'
-            insert_logger('stock', hy_dm, 'init_hy', status, 'sw_hy', p_end_date, p_batch_number, rnt, 'init hy dzb')
+            log.insert_logger('stock', hy_dm, 'init_hy', status, 'sw_hy', p_end_date, p_batch_number, rnt, 'init hy dzb')
             time.sleep(0.5)
 
 
@@ -105,7 +79,7 @@ def init_concept_stocks_10jqka():
             concept_dm = res['concept_dm']
             rnt = insert_concept_stocks(concept_dm)
             status = 'y' if rnt else 'n'
-            insert_logger('stock', concept_dm, 'init_concept', status, '10jqka_concept', p_end_date, p_batch_number,
+            log.insert_logger('stock', concept_dm, 'init_concept', status, '10jqka_concept', p_end_date, p_batch_number,
                           rnt, 'init concept dzb')
             time.sleep(0.5)
 
