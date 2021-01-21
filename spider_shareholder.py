@@ -43,7 +43,7 @@ def get_shareholders(symbol, per_symbol):
 
 def parse_shareholders_data(response, symbol, per_symbol, source):
     """
-        解析当前股票行情
+        解析股东信息
     Parameters
     response : 网络响应
     source : eastmoney（东方财富），netease(网易)， 10jqka（同花顺）

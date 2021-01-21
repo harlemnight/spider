@@ -12,7 +12,7 @@ from selenium.webdriver.chrome.options import Options
 
 def get_finance_main(symbol, per_symbol):
     """
-        获取主要指标
+        获取主要经营指标
     Parameters
     source : eastmoney（东方财富）
     Return
@@ -34,7 +34,7 @@ def get_finance_main(symbol, per_symbol):
 
 def parse_finance_main_data(response, symbol, per_symbol, source):
     """
-        解析当前股票行情
+        解析经营主要指标
     Parameters
     response : 网络响应
     source : eastmoney（东方财富），netease(网易)， 10jqka（同花顺）
@@ -92,7 +92,7 @@ def parse_finance_main_data(response, symbol, per_symbol, source):
 
 def get_finance_dupont(symbol, per_symbol):
     """
-        获取杜邦
+        获取杜邦数据
     Parameters
     source : eastmoney（东方财富）
     Return
@@ -114,7 +114,7 @@ def get_finance_dupont(symbol, per_symbol):
 
 def parse_finance_dupont_data(response, symbol, per_symbol, source):
     """
-        解析当前股票行情
+        解析杜邦数据
     Parameters
     response : 网络响应
     source : eastmoney（东方财富），netease(网易)， 10jqka（同花顺）

@@ -3,7 +3,7 @@ import spider_sql as sql
 import datetime as dt
 import time
 import spider_finance as sf
-from example_spider import insert_logger
+import example_logger as log
 
 
 def get_all_ready_stocks_finance_main():
@@ -65,7 +65,7 @@ def init_finance_main():
             p_pre_symbol = res['pre_symbol']
             rnt = insert_finance_main(p_symbol,p_pre_symbol)
             status = 'y' if rnt else 'n'
-            insert_logger(p_security_type, p_symbol, 'init_finance_main', status, 'finance',
+            log.insert_logger(p_security_type, p_symbol, 'init_finance_main', status, 'finance',
                           p_end_date, p_batch_number, rnt, 'init finance main')
             time.sleep(1)
     print('init finance main end')
@@ -130,7 +130,7 @@ def init_finance_dupont():
             p_pre_symbol = res['pre_symbol']
             rnt = insert_finance_dupont(p_symbol,p_pre_symbol)
             status = 'y' if rnt else 'n'
-            insert_logger(p_security_type, p_symbol, 'init_finance_dupont', status, 'finance',
+            log.insert_logger(p_security_type, p_symbol, 'init_finance_dupont', status, 'finance',
                           p_end_date, p_batch_number, rnt, 'init finance dupont')
             time.sleep(1)
     print('init finance dupont end')

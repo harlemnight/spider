@@ -3,7 +3,6 @@ import spider_sql as sql
 import datetime as dt
 import time
 import spider_shareholder as sf
-from example_spider import insert_logger
 
 
 def get_all_ready_stocks_shareholders():
