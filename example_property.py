@@ -70,8 +70,8 @@ def init_industry_stocks():
             time.sleep(0.5)
 
 
-def init_concept_stocks_10jqka():
-    res_data = get_concept_list()
+def init_concept_stocks(source):
+    res_data = get_concept_list(source)
     p_end_date = dt.datetime.now().strftime('%Y%m%d')
     p_batch_number = time.time() * 10000000
     if res_data:
@@ -84,15 +84,19 @@ def init_concept_stocks_10jqka():
             time.sleep(0.5)
 
 
-def insert_concept_stocks(concept_dm):
-    res = sf.get_concept_stocks(concept_dm)
+def insert_concept_stocks(source, concept_dm):
+    res = sf.get_concept_stocks(source, concept_dm)
     if res is not None:
         try:
             con = db.get_dbcon()
             cursor = con.cursor()
             params = {'concept_dm': concept_dm}
-            cursor.execute(sql.SQL_DELETE_CONCEPT_STOCKS_10JQKA, params)
-            cursor.executemany(sql.SQL_INSERT_CONCEPT_STOCKS_10JQKA, res)
+            if source == '10jqka':
+                cursor.execute(sql.SQL_DELETE_CONCEPT_STOCKS_10JQKA, params)
+                cursor.executemany(sql.SQL_INSERT_CONCEPT_STOCKS_10JQKA, res)
+            else:
+                cursor.execute(sql.SQL_DELETE_CONCEPT_STOCKS_EASTMONEY, params)
+                cursor.executemany(sql.SQL_INSERT_CONCEPT_STOCKS_EASTMONEY, res)
             rowcount = str(cursor.rowcount)
             con.commit()
             # print('insert concept_dm:' + concept_dm + ' successfully rowcount: ' + rowcount)
@@ -108,11 +112,14 @@ def insert_concept_stocks(concept_dm):
         return None
 
 
-def get_concept_list():
+def get_concept_list(source):
     try:
         con = db.get_dbcon()
         cursor = con.cursor()
-        cursor.execute(sql.SQL_GET_STOCK_CONCEPTS_10JQKA)
+        if source == '10jqka':
+            cursor.execute(sql.SQL_GET_STOCK_CONCEPTS_10JQKA)
+        else:
+            cursor.execute(sql.SQL_GET_STOCK_CONCEPTS_EASTMONEY)
         res = []
         for row in cursor.fetchall():
             data = {}

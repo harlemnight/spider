@@ -144,11 +144,16 @@ def parse_concepts_data(response, source):
             data['concept_name'] = a.text
             rs.append(data)
     else:
-        data = {}
+        items = response.json().get('data').get('diff')
+        for i in range(len(items)):
+            data = {}
+            data['concept_dm'] = items[i].get('f12')
+            data['concept_name'] = items[i].get('f14')
+            rs.append(data)
     return rs
 
 
-def get_concept_stocks(concept_dm):
+def get_concept_stocks(source, concept_dm):
     """
         获取概念成份股
         Parameters
@@ -156,35 +161,37 @@ def get_concept_stocks(concept_dm):
         Return
     --------
     """
-    # 由于同花顺使用了实时更新cookie暂只能通过无头浏览器每次获取页面数据
-    # 由于使用浏览器避免每次请求都打开浏览器
-    # 因为多次握手浏览器会自动设置cookie如果实时更新cookie那么删除上一次的cookie就行了
-    # 具体情况具体分析
-    source = spcon.CONCEPT_STOCKS_SOURCE[spcon.CONCEPT_STOCKS_SOURCE_IDX]
-    # user_agent = spcon.USER_AGENT
-    chrome_options = Options()
-    # chrome_options.add_argument('User-Agent='+user_agent)
-    # 隐藏UI
-    chrome_options.add_argument('headless')
-    driver = webdriver.Chrome(chrome_options=chrome_options)
-    base_url = spcon.CONCEPT_STOCKS[source]['url']
-    base_url = base_url % (1, concept_dm)
-    driver.delete_all_cookies()
-    driver.get(base_url)
-    page_count = parse_concept_stocks_count_data(driver.page_source, source)
-    rs = []
-    if page_count:
-        for i in range(int(page_count)):
-            base_url = spcon.CONCEPT_STOCKS[source]['url']
-            base_url = base_url % (int(i + 1), concept_dm)
-            driver.delete_all_cookies()
-            driver.get(base_url)
-            res = parse_concept_stocks_data(driver.page_source, concept_dm, source)
-            if res is None:
-                return None
-            rs.extend(res)
-    driver.quit()
-    return rs
+    if source == '10jqka':
+        # 由于同花顺使用了实时更新cookie暂只能通过无头浏览器每次获取页面数据
+        # 由于使用浏览器避免每次请求都打开浏览器
+        # 因为多次握手浏览器会自动设置cookie如果实时更新cookie那么删除上一次的cookie就行了
+        # 具体情况具体分析
+        # user_agent = spcon.USER_AGENT
+        chrome_options = Options()
+        # chrome_options.add_argument('User-Agent='+user_agent)
+        # 隐藏UI
+        chrome_options.add_argument('headless')
+        driver = webdriver.Chrome(chrome_options=chrome_options)
+        base_url = spcon.CONCEPT_STOCKS[source]['url']
+        base_url = base_url % (1, concept_dm)
+        driver.delete_all_cookies()
+        driver.get(base_url)
+        page_count = parse_concept_stocks_count_data(driver.page_source, source)
+        rs = []
+        if page_count:
+            for i in range(int(page_count)):
+                base_url = spcon.CONCEPT_STOCKS[source]['url']
+                base_url = base_url % (int(i + 1), concept_dm)
+                driver.delete_all_cookies()
+                driver.get(base_url)
+                res = parse_concept_stocks_data(driver.page_source, concept_dm, source)
+                if res is None:
+                    return None
+                rs.extend(res)
+        driver.quit()
+        return rs
+    else:
+        return 0
 
 
 def parse_concept_stocks_data(response_text, concept_dm, source):
