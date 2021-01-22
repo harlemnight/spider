@@ -56,7 +56,7 @@ SECURITY = {
   }
 }
 
-# 获取股票，期货，等的历史行情信息
+############################################################# 获取股票，期货，等的历史行情信息
 HISTORY_PRICE_SOURCE_IDX = 0
 HISTORY_PRICE_SOURCE = ['neteasy_csv', 'neteasy_html']
 HISTORY_PRICE = {
@@ -83,7 +83,7 @@ HISTORY_PRICE = {
   }
 }
 
-# 获取股票，期货，等当日收盘行情信息
+###################################################### 获取股票，期货，等当日收盘行情信息
 CURRENT_PRICE_SOURCE_IDX = 0
 CURRENT_PRICE_SOURCE = ['eastmoney']
 CURRENT_PRICE = {
@@ -105,7 +105,7 @@ CURRENT_PRICE = {
   }
 }
 
-# 获取申万二级行业成份股个数
+######################################################## 获取申万二级行业成份股个数
 SW_INDUSTRY2_COUNT_SOURCE_IDX = 0
 SW_INDUSTRY2_COUNT_SOURCE = ['sina']
 SW_INDUSTRY2_COUNT = {
@@ -133,7 +133,7 @@ SW_INDUSTRY2 = {
     }
 }
 
-# 获取概念定义
+########################################################## 获取概念定义
 CONCEPTS_SOURCE_IDX = 0
 CONCEPTS_SOURCE = ['10jqka']
 CONCEPTS = {
@@ -142,9 +142,21 @@ CONCEPTS = {
         'params': {
         },
         'headers': HEADERS
+    },
+    'eastmoney': {
+        'url': 'http://http://push2.eastmoney.com/api/qt/clist/get?',
+        'params': {
+            'pn': '1',
+            'pz': '10000',
+            'po': '1',
+            'np': '1',
+            'fs': 'm:90+t:3+f:!50',
+            'fields': 'f12,f14'
+        },
+        'headers': HEADERS
     }
 }
-# 获取概念成分股
+###################################################### 获取概念成分股
 CONCEPT_STOCKS_SOURCE_IDX = 0
 CONCEPT_STOCKS_SOURCE = ['10jqka']
 CONCEPT_STOCKS = {
@@ -153,8 +165,53 @@ CONCEPT_STOCKS = {
         'params': {
         },
         'headers': HEADERS
+    },
+    'eastmoney': {
+            'url': 'http://http://push2.eastmoney.com/api/qt/clist/get?fs=%s',
+            'params': {
+                'pn': '1',
+                'pz': '10000',
+                'po': '1',
+                'np': '1',
+                'fields': 'f12,f14'
+            },
+            'headers': HEADERS
+        }
+}
+
+#####################获取地域信息#############################################
+AREA = {
+    'eastmoney': {
+        'url': 'http://http://push2.eastmoney.com/api/qt/clist/get?',
+        'params': {
+            'pn': '1',
+            'pz': '10000',
+            'po': '1',
+            'np': '1',
+            'fs': 'm:90+t:1+f:!50',
+            'fields': 'f12,f14'
+        },
+        'headers': HEADERS
     }
 }
+
+#####################获取地域信息#############################################
+AREA_STOCKS = {
+    'eastmoney': {
+            'url': 'http://http://push2.eastmoney.com/api/qt/clist/get?fs=%s',
+            'params': {
+                'pn': '1',
+                'pz': '10000',
+                'po': '1',
+                'np': '1',
+                'fields': 'f12,f14'
+            },
+            'headers': HEADERS
+        }
+}
+
+
+
 
 
 # ######################F10股东研究数据################################################################################

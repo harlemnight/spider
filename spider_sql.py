@@ -47,7 +47,24 @@ SQL_INSERT_CONCEPT_STOCKS_10JQKA = 'insert into t_china_stock_concept_10jqka_dzb
 # 同花顺概念列表
 SQL_GET_STOCK_CONCEPTS_10JQKA = 'select concept_dm  From t_china_stock_concept_10jqka s where not exists ' \
                                  '( select null from t_xt_logger_mx m  where m.security_type = \'stock\'' \
-                                 ' and m.symbol = s.concept_dm	and m.operation = \'init_concept\' )' \
+                                 ' and m.symbol = s.concept_dm	and m.operation = \'init_10jqka_concept\' )' \
+                                '  order by 1'
+
+
+# 东财概念定义
+SQL_DELETE_CONCEPTS_EASTMONEY = 'delete from t_china_stock_concept_eastmoney'
+SQL_INSERT_CONCEPTS_EASTMONEY = 'insert into t_china_stock_concept_eastmoney(concept_dm, concept_name) values ' \
+                                       '(%(concept_dm)s,%(concept_name)s)'
+
+# 东财概念成分股票
+SQL_DELETE_CONCEPT_STOCKS_EASTMONEY = 'delete from t_china_stock_concept_eastmoney_dzb where concept_dm = %(concept_dm)s'
+SQL_INSERT_CONCEPT_STOCKS_EASTMONEY = 'insert into t_china_stock_concept_eastmoney_dzb(concept_dm, symbol) values' \
+                                  '(%(concept_dm)s,%(symbol)s)'
+
+# 东财概念列表
+SQL_GET_STOCK_CONCEPTS_EASTMONEY = 'select concept_dm  From t_china_stock_concept_eastmoney s where not exists ' \
+                                 '( select null from t_xt_logger_mx m  where m.security_type = \'stock\'' \
+                                 ' and m.symbol = s.concept_dm	and m.operation = \'init_eastmoney_concept\' )' \
                                 '  order by 1'
 
 # 写日志

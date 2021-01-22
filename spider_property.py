@@ -105,11 +105,10 @@ def get_concepts(source):
     """
         获取概念列表
         Parameters
-        source : 10jqka(同花顺)
+        source : 10jqka(同花顺),eastmoney(东财)
         Return
     --------
     """
-    source = spcon.CONCEPTS_SOURCE[spcon.CONCEPTS_SOURCE_IDX]
     base_url = spcon.CONCEPTS[source]['url']
     headers = spcon.CONCEPTS[source]['headers']
     params = spcon.CONCEPTS[source]['params']
@@ -128,13 +127,13 @@ def parse_concepts_data(response, source):
         解析股票概念定义
     Parameters
     response : 网络响应
-    source : 10jqka（同花顺）
+    source : 10jqka（同花顺）eastmoney(东财)
     Return
     --------
      """
     rs = []
     # 10jqka(同花顺)
-    if source == spcon.CONCEPTS_SOURCE[0]:
+    if source == '10jqka':
         return_html = etree.HTML(response.text)
         result = return_html.xpath('//div[@class="cate_items"]/a')
         pattern = re.compile(r'\d{6}')
@@ -144,6 +143,8 @@ def parse_concepts_data(response, source):
             data['concept_dm'] = concept_dm
             data['concept_name'] = a.text
             rs.append(data)
+    else:
+        data = {}
     return rs
 
 
@@ -225,6 +226,6 @@ def parse_concept_stocks_count_data(response_text, source):
 
 
 if __name__ == '__main__':
+    rs = get_concepts('10jqka')
+    rs = get_concepts('eastmoney')
     rs = get_concept_stocks('300008')
-    print(rs)
-    print(len(rs))

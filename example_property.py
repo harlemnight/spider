@@ -131,21 +131,27 @@ def get_concept_list():
         db.close_dbcon(con)
 
 
-def init_concepts_10jqka():
-    res = sf.get_concepts('10jqka')
+def init_concepts(source):
+    res = sf.get_concepts(source)
     if res is not None:
         try:
             con = db.get_dbcon()
             cursor = con.cursor()
-            cursor.execute(sql.SQL_DELETE_CONCEPTS_10JQKA)
-            cursor.executemany(sql.SQL_INSERT_CONCEPTS_10JQKA, res)
+            if source == '10jqka':
+                sql_delete = sql.SQL_DELETE_CONCEPTS_10JQKA
+                sql_insert = sql.SQL_INSERT_CONCEPTS_10JQKA
+            else:
+                sql_delete = sql.SQL_DELETE_CONCEPTS_EASTMONEY
+                sql_insert = sql.SQL_INSERT_CONCEPTS_EASTMONEY
+            cursor.execute(sql_delete)
+            cursor.executemany(sql_insert, res)
             rowcount = str(cursor.rowcount)
             con.commit()
-            print('insert concept_dm all successfully rowcount: ' + rowcount)
+            print('insert ' + source + ' concept_dm all successfully rowcount: ' + rowcount)
             return rowcount
         except Exception as e:
             db.rollback(con)
-            print('insert concept_dm all failed :' + str(e))
+            print('insert ' + source + ' concept_dm all failed :' + str(e))
             return None
         finally:
             db.close_dbcon(con)
@@ -155,7 +161,7 @@ def init_concepts_10jqka():
 
 
 if __name__ == '__main__':
-    init_industry_stocks() #初始化申万二级行业成份股 每周执行一次
-    init_concepts_10jqka()    #初始化概念 每周执行一次
-    init_concept_stocks_10jqka() #初始化概念成份股 每周执行一次
+    # init_industry_stocks() #初始化申万二级行业成份股 每周执行一次
+    init_concepts('10jqka')    #初始化概念 每周执行一次
+    init_concept_stocks('10jqka') #初始化概念成份股 每周执行一次
 
