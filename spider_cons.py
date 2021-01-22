@@ -144,7 +144,7 @@ CONCEPTS = {
         'headers': HEADERS
     },
     'eastmoney': {
-        'url': 'http://http://push2.eastmoney.com/api/qt/clist/get?',
+        'url': 'http://push2.eastmoney.com/api/qt/clist/get?',
         'params': {
             'pn': '1',
             'pz': '10000',
@@ -167,7 +167,7 @@ CONCEPT_STOCKS = {
         'headers': HEADERS
     },
     'eastmoney': {
-            'url': 'http://http://push2.eastmoney.com/api/qt/clist/get?fs=%s',
+            'url': 'http://push2.eastmoney.com/api/qt/clist/get?fs=%s',
             'params': {
                 'pn': '1',
                 'pz': '10000',

@@ -233,6 +233,7 @@ def parse_concept_stocks_count_data(response_text, source):
 
 
 if __name__ == '__main__':
-    rs = get_concepts('10jqka')
+    # rs = get_concepts('10jqka')
     rs = get_concepts('eastmoney')
-    rs = get_concept_stocks('300008')
+    print(rs)
+    # rs = get_concept_stocks('300008')
