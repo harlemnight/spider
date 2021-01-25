@@ -156,9 +156,7 @@ CONCEPTS = {
         'headers': HEADERS
     }
 }
-###################################################### 获取概念成分股
-CONCEPT_STOCKS_SOURCE_IDX = 0
-CONCEPT_STOCKS_SOURCE = ['10jqka']
+###################################################### 获取概念成分股###########################
 CONCEPT_STOCKS = {
     '10jqka': {
         'url': 'http://q.10jqka.com.cn/gn/detail/field/264648/page/%s/ajax/1/code/%s',

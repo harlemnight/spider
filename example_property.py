@@ -169,6 +169,7 @@ def init_concepts(source):
 
 if __name__ == '__main__':
     # init_industry_stocks() #初始化申万二级行业成份股 每周执行一次
-    init_concepts('10jqka')    #初始化概念 每周执行一次
-    init_concept_stocks('10jqka') #初始化概念成份股 每周执行一次
+    # 10jqka概念基本被废弃
+    init_concepts('eastmoney')    #初始化概念 每周执行一次
+    init_concept_stocks('eastmoney') #初始化概念成份股 每周执行一次
 

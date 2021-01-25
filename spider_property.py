@@ -143,6 +143,7 @@ def parse_concepts_data(response, source):
             data['concept_dm'] = concept_dm
             data['concept_name'] = a.text
             rs.append(data)
+    # eastmoney(东财)
     else:
         items = response.json().get('data').get('diff')
         for i in range(len(items)):
@@ -157,7 +158,7 @@ def get_concept_stocks(source, concept_dm):
     """
         获取概念成份股
         Parameters
-        source : 10jqka(同花顺)
+        source : 10jqka(同花顺) eastmoney(东财)
         Return
     --------
     """
@@ -190,7 +191,19 @@ def get_concept_stocks(source, concept_dm):
                 rs.extend(res)
         driver.quit()
         return rs
+    # eastmoney(东财)
     else:
+        base_url = spcon.CONCEPT_STOCKS[source]['url']
+        headers = spcon.CONCEPT_STOCKS[source]['headers']
+        params = spcon.CONCEPT_STOCKS[source]['params']
+        rs = []
+        try:
+            response = requests.get(base_url + urlencode(params), headers=headers)
+            if response.status_code == 200:
+                rs = parse_concept_stocks_data(response,concept_dm, source)
+        except RequestException:
+            return None
+        return rs
         return 0
 
 
@@ -212,6 +225,9 @@ def parse_concept_stocks_data(response_text, concept_dm, source):
             symbol = tr.xpath('./td/a/text()')
             if symbol:
                 rs.append(dict(zip(['concept_dm', 'symbol'], [concept_dm, symbol[0]])))
+    # eastmoney(东财)
+    else:
+      return 0
     return rs
 
 
@@ -233,7 +249,9 @@ def parse_concept_stocks_count_data(response_text, source):
 
 
 if __name__ == '__main__':
+    # 10jqka概念基本被废弃
     # rs = get_concepts('10jqka')
     rs = get_concepts('eastmoney')
     print(rs)
-    # rs = get_concept_stocks('300008')
+    rs = get_concept_stocks('eastmoney', '300008')
+    print(rs)
