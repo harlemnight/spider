@@ -139,5 +139,5 @@ def init_finance_dupont():
 if __name__ == '__main__':
     # insert_finance_main('000002', 'SZ000002')
     # insert_finance_dupont('000002', 'SZ000002')
-    # init_finance_main()
+    init_finance_main()
     init_finance_dupont()

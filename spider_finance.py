@@ -45,7 +45,6 @@ def parse_finance_main_data(response, symbol, per_symbol, source):
     # eastmoney（东方财富）
     if source == spcon.FINANCE_MAIN_STOCKS_SOURCE[0]:
         items = response.json()
-        j = 0
         for i in range(len(items)):
             data = {}
             data['symbol'] = symbol
@@ -84,9 +83,6 @@ def parse_finance_main_data(response, symbol, per_symbol, source):
             data['zcfzl'] = items[i].get('zcfzl')
             data['zzczzy'] = items[i].get('zzczzy')
             finance_mains.append(data)
-            if j == 1:
-                break
-            j = j+1
     return finance_mains
 
 
@@ -125,7 +121,6 @@ def parse_finance_dupont_data(response, symbol, per_symbol, source):
     # eastmoney（东方财富）
     if source == spcon.FINANCE_DUPONT_STOCKS_SOURCE[0]:
         items = response.json().get('bgq')
-        j = 0
         for i in range(len(items)):
             data = {}
             data['symbol'] = symbol
@@ -177,13 +172,10 @@ def parse_finance_dupont_data(response, symbol, per_symbol, source):
             data['zzcjll'] = items[i].get('zzcjll')
             data['zzczzl'] = items[i].get('zzczzl')
             duponts.append(data)
-            if j == 1:
-                break
-            j = j+1
     return duponts
 
 
 if __name__ == '__main__':
-    ms = get_finance_main('000505', 'SZ000505')
-    #ms = get_finance_dupont('000505', 'SZ000505')
+    #ms = get_finance_main('000505', 'SZ000505')
+    ms = get_finance_dupont('000505', 'SZ000505')
     print(ms)
