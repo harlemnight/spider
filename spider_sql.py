@@ -27,12 +27,13 @@ SQL_INSERT_STOCK_CURRENT_PRICE = 'insert into t_china_stock_trade_current(trade_
 
 # 申万二级行业成分股票
 SQL_DELETE_STOCK_INDUSTRY_SW = 'delete from t_china_stock_industry_sw_dzb where hy_dm = %(hy_dm)s'
-SQL_INSERT_STOCK_INDUSTRY_SW = 'insert into t_china_stock_industry_sw_dzb(hy_dm, symbol) values (%(hy_dm)s,%(symbol)s)'
+SQL_INSERT_STOCK_INDUSTRY_SW = 'insert into t_china_stock_industry_sw_dzb(hy_dm, symbol,symbol_name) values' \
+                               ' (%(hy_dm)s,%(symbol)s,%(symbol_name)s)'
 
 # 申万二级行业
 SQL_GET_STOCK_INDUSTRY_LIST_SW = 'select hy_dm  From t_china_stock_industry_sw s where lvl = %(lvl)s and not exists ' \
                                  '( select null from t_xt_logger_mx m  where m.security_type = \'stock\'' \
-                                 ' and m.symbol = s.hy_dm	and m.operation = \'init_hy\' )  order by 1'
+                                 ' and m.symbol = s.hy_dm	and m.operation = \'init_sw_hy\' )  order by 1'
 
 # 同花顺概念定义
 SQL_DELETE_CONCEPTS_10JQKA = 'delete from t_china_stock_concept_10jqka'

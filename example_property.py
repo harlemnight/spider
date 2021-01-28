@@ -66,7 +66,7 @@ def init_industry_stocks():
             hy_dm = res['hy_dm']
             rnt = insert_industry_stocks(hy_dm)
             status = 'y' if rnt else 'n'
-            log.insert_logger('stock', hy_dm, 'init_hy', status, 'sw_hy', p_end_date, p_batch_number, rnt, 'init hy dzb')
+            log.insert_logger('stock', hy_dm, 'init_sw_hy', status, 'sw_hy', p_end_date, p_batch_number, rnt, 'init hy dzb')
             time.sleep(0.5)
 
 
@@ -168,8 +168,8 @@ def init_concepts(source):
 
 
 if __name__ == '__main__':
-    # init_industry_stocks() #初始化申万二级行业成份股 每周执行一次
+    init_industry_stocks() #初始化申万二级行业成份股 每周执行一次
     # 10jqka概念基本被废弃
     # init_concepts('eastmoney')    #初始化概念 每周执行一次
-    init_concept_stocks('eastmoney') #初始化概念成份股 每周执行一次
+    # init_concept_stocks('eastmoney') #初始化概念成份股 每周执行一次
 

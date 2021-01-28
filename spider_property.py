@@ -67,6 +67,7 @@ def get_industry_stocks(hy_dm):
         for i in range(page_count):
             params = spcon.SW_INDUSTRY2[source]['params']
             params = ast.literal_eval(str(params) % (int(i+1), hy_dm))
+            print(base_url + urlencode(params))
             try:
                 response = requests.get(base_url + urlencode(params), headers=headers)
                 if response.status_code == 200:
@@ -97,6 +98,7 @@ def parse_industry_stocks_data(response, source, hy_dm):
             data = {}
             data['hy_dm'] = hy_dm
             data['symbol'] = items[i].get('code')
+            data['symbol_name'] = items[i].get('name')
             rs.append(data)
     return rs
 
