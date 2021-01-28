@@ -58,8 +58,8 @@ SQL_INSERT_CONCEPTS_EASTMONEY = 'insert into t_china_stock_concept_eastmoney(con
 
 # 东财概念成分股票
 SQL_DELETE_CONCEPT_STOCKS_EASTMONEY = 'delete from t_china_stock_concept_eastmoney_dzb where concept_dm = %(concept_dm)s'
-SQL_INSERT_CONCEPT_STOCKS_EASTMONEY = 'insert into t_china_stock_concept_eastmoney_dzb(concept_dm, symbol) values' \
-                                  '(%(concept_dm)s,%(symbol)s)'
+SQL_INSERT_CONCEPT_STOCKS_EASTMONEY = 'insert into t_china_stock_concept_eastmoney_dzb(concept_dm, symbol,symbol_name) values' \
+                                  '(%(concept_dm)s,%(symbol)s,%(symbol_name)s)'
 
 # 东财概念列表
 SQL_GET_STOCK_CONCEPTS_EASTMONEY = 'select concept_dm  From t_china_stock_concept_eastmoney s where not exists ' \

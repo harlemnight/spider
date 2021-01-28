@@ -196,6 +196,7 @@ def get_concept_stocks(source, concept_dm):
         base_url = spcon.CONCEPT_STOCKS[source]['url']
         headers = spcon.CONCEPT_STOCKS[source]['headers']
         params = spcon.CONCEPT_STOCKS[source]['params']
+        base_url  = base_url % concept_dm
         rs = []
         try:
             response = requests.get(base_url + urlencode(params), headers=headers)
@@ -204,22 +205,21 @@ def get_concept_stocks(source, concept_dm):
         except RequestException:
             return None
         return rs
-        return 0
 
 
-def parse_concept_stocks_data(response_text, concept_dm, source):
+def parse_concept_stocks_data(response, concept_dm, source):
     """
         解析股票概念成份股
     Parameters
     response : 网络响应
-    source : 10jqka（同花顺）
+    source : 10jqka（同花顺） eastmoney(东财)
     Return
     --------
      """
     rs = []
     # 10jqka(同花顺)
-    if source == spcon.CONCEPT_STOCKS_SOURCE[0]:
-        return_html = etree.HTML(response_text)
+    if source == '10jqka':
+        return_html = etree.HTML(response)
         tr_html = return_html.xpath('//tbody/tr')
         for tr in tr_html:
             symbol = tr.xpath('./td/a/text()')
@@ -227,7 +227,13 @@ def parse_concept_stocks_data(response_text, concept_dm, source):
                 rs.append(dict(zip(['concept_dm', 'symbol'], [concept_dm, symbol[0]])))
     # eastmoney(东财)
     else:
-      return 0
+        items = response.json().get('data').get('diff')
+        for i in range(len(items)):
+            data = {}
+            data['concept_dm'] = concept_dm
+            data['symbol'] = items[i].get('f12')
+            data['symbol_name'] = items[i].get('f14')
+            rs.append(data)
     return rs
 
 
@@ -251,7 +257,7 @@ def parse_concept_stocks_count_data(response_text, source):
 if __name__ == '__main__':
     # 10jqka概念基本被废弃
     # rs = get_concepts('10jqka')
-    rs = get_concepts('eastmoney')
-    print(rs)
-    rs = get_concept_stocks('eastmoney', '300008')
+    # rs = get_concepts('eastmoney')
+    # print(rs)
+    rs = get_concept_stocks('eastmoney', 'BK0490')
     print(rs)

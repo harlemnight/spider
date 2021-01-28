@@ -77,9 +77,9 @@ def init_concept_stocks(source):
     if res_data:
         for res in res_data:
             concept_dm = res['concept_dm']
-            rnt = insert_concept_stocks(concept_dm)
+            rnt = insert_concept_stocks(source, concept_dm)
             status = 'y' if rnt else 'n'
-            log.insert_logger('stock', concept_dm, 'init_concept', status, '10jqka_concept', p_end_date, p_batch_number,
+            log.insert_logger('stock', concept_dm, 'init_'+source+'_concept', status, 'init_'+source+'_concept', p_end_date, p_batch_number,
                           rnt, 'init concept dzb')
             time.sleep(0.5)
 
@@ -170,6 +170,6 @@ def init_concepts(source):
 if __name__ == '__main__':
     # init_industry_stocks() #初始化申万二级行业成份股 每周执行一次
     # 10jqka概念基本被废弃
-    init_concepts('eastmoney')    #初始化概念 每周执行一次
+    # init_concepts('eastmoney')    #初始化概念 每周执行一次
     init_concept_stocks('eastmoney') #初始化概念成份股 每周执行一次
 
