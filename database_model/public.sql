@@ -12,7 +12,7 @@
  Target Server Version : 120003
  File Encoding         : 65001
 
- Date: 18/09/2020 17:57:01
+ Date: 28/01/2021 17:25:08
 */
 
 
@@ -84,11 +84,38 @@ COMMENT ON COLUMN "public"."t_china_stock_concept_10jqka"."concept_name" IS '概
 DROP TABLE IF EXISTS "public"."t_china_stock_concept_10jqka_dzb";
 CREATE TABLE "public"."t_china_stock_concept_10jqka_dzb" (
   "concept_dm" varchar(30) COLLATE "pg_catalog"."default",
-  "symbol" varchar(30) COLLATE "pg_catalog"."default"
+  "symbol" varchar(30) COLLATE "pg_catalog"."default",
+  "symbol_name" varchar(255) COLLATE "pg_catalog"."default"
 )
 ;
 COMMENT ON COLUMN "public"."t_china_stock_concept_10jqka_dzb"."concept_dm" IS '概念代码';
 COMMENT ON COLUMN "public"."t_china_stock_concept_10jqka_dzb"."symbol" IS '股票代码';
+
+-- ----------------------------
+-- Table structure for t_china_stock_concept_eastmoney
+-- ----------------------------
+DROP TABLE IF EXISTS "public"."t_china_stock_concept_eastmoney";
+CREATE TABLE "public"."t_china_stock_concept_eastmoney" (
+  "concept_dm" varchar(12) COLLATE "pg_catalog"."default",
+  "concept_name" varchar(300) COLLATE "pg_catalog"."default"
+)
+;
+COMMENT ON COLUMN "public"."t_china_stock_concept_eastmoney"."concept_dm" IS '概念代码';
+COMMENT ON COLUMN "public"."t_china_stock_concept_eastmoney"."concept_name" IS '概念名字';
+
+-- ----------------------------
+-- Table structure for t_china_stock_concept_eastmoney_dzb
+-- ----------------------------
+DROP TABLE IF EXISTS "public"."t_china_stock_concept_eastmoney_dzb";
+CREATE TABLE "public"."t_china_stock_concept_eastmoney_dzb" (
+  "concept_dm" varchar(30) COLLATE "pg_catalog"."default",
+  "symbol" varchar(30) COLLATE "pg_catalog"."default",
+  "symbol_name" varchar(255) COLLATE "pg_catalog"."default"
+)
+;
+COMMENT ON COLUMN "public"."t_china_stock_concept_eastmoney_dzb"."concept_dm" IS '概念代码';
+COMMENT ON COLUMN "public"."t_china_stock_concept_eastmoney_dzb"."symbol" IS '股票代码';
+COMMENT ON COLUMN "public"."t_china_stock_concept_eastmoney_dzb"."symbol_name" IS '股票名称';
 
 -- ----------------------------
 -- Table structure for t_china_stock_finance_dupont
@@ -290,7 +317,8 @@ COMMENT ON COLUMN "public"."t_china_stock_industry_sw"."lvl" IS '层级';
 DROP TABLE IF EXISTS "public"."t_china_stock_industry_sw_dzb";
 CREATE TABLE "public"."t_china_stock_industry_sw_dzb" (
   "hy_dm" varchar(30) COLLATE "pg_catalog"."default",
-  "symbol" varchar(30) COLLATE "pg_catalog"."default"
+  "symbol" varchar(30) COLLATE "pg_catalog"."default",
+  "symbol_name" varchar(255) COLLATE "pg_catalog"."default"
 )
 ;
 COMMENT ON COLUMN "public"."t_china_stock_industry_sw_dzb"."hy_dm" IS '行业代码';
@@ -1100,6 +1128,54 @@ COMMENT ON COLUMN "public"."t_china_stock_trade_2020"."syldt" IS '市盈率（�
 COMMENT ON COLUMN "public"."t_china_stock_trade_2020"."sjl" IS '市净率';
 
 -- ----------------------------
+-- Table structure for t_china_stock_trade_2021
+-- ----------------------------
+DROP TABLE IF EXISTS "public"."t_china_stock_trade_2021";
+CREATE TABLE "public"."t_china_stock_trade_2021" (
+  "trade_date" date NOT NULL,
+  "symbol" varchar(30) COLLATE "pg_catalog"."default",
+  "symbol_name" varchar(255) COLLATE "pg_catalog"."default",
+  "open" numeric(50,6),
+  "high" numeric(50,6),
+  "low" numeric(50,6),
+  "close" numeric(50,6),
+  "volume" numeric(50,6),
+  "money" numeric(50,6),
+  "change_amount" numeric(50,6),
+  "change_rate" numeric(50,6),
+  "amplitude" numeric(50,6),
+  "turnover" numeric(50,6),
+  "pre_close" numeric(50,6),
+  "high_limit" numeric(50,6),
+  "low_limit" numeric(50,6),
+  "total_market" numeric(100,6),
+  "circulate_market" numeric(100,6),
+  "syldt" numeric(100,6),
+  "sjl" numeric(100,6)
+)
+;
+COMMENT ON COLUMN "public"."t_china_stock_trade_2021"."trade_date" IS '交易日期';
+COMMENT ON COLUMN "public"."t_china_stock_trade_2021"."symbol" IS '交易代码';
+COMMENT ON COLUMN "public"."t_china_stock_trade_2021"."symbol_name" IS '交易名称';
+COMMENT ON COLUMN "public"."t_china_stock_trade_2021"."open" IS '开盘价';
+COMMENT ON COLUMN "public"."t_china_stock_trade_2021"."high" IS '最高价';
+COMMENT ON COLUMN "public"."t_china_stock_trade_2021"."low" IS '最低价';
+COMMENT ON COLUMN "public"."t_china_stock_trade_2021"."close" IS '收盘价';
+COMMENT ON COLUMN "public"."t_china_stock_trade_2021"."volume" IS '成交量';
+COMMENT ON COLUMN "public"."t_china_stock_trade_2021"."money" IS '成交金额';
+COMMENT ON COLUMN "public"."t_china_stock_trade_2021"."change_amount" IS '涨跌额';
+COMMENT ON COLUMN "public"."t_china_stock_trade_2021"."change_rate" IS '涨跌幅';
+COMMENT ON COLUMN "public"."t_china_stock_trade_2021"."amplitude" IS '振幅';
+COMMENT ON COLUMN "public"."t_china_stock_trade_2021"."turnover" IS '换手率';
+COMMENT ON COLUMN "public"."t_china_stock_trade_2021"."pre_close" IS '前一日收盘价';
+COMMENT ON COLUMN "public"."t_china_stock_trade_2021"."high_limit" IS '涨停价';
+COMMENT ON COLUMN "public"."t_china_stock_trade_2021"."low_limit" IS '跌停价';
+COMMENT ON COLUMN "public"."t_china_stock_trade_2021"."total_market" IS '总市值';
+COMMENT ON COLUMN "public"."t_china_stock_trade_2021"."circulate_market" IS '流通市值';
+COMMENT ON COLUMN "public"."t_china_stock_trade_2021"."syldt" IS '市盈率（动态）';
+COMMENT ON COLUMN "public"."t_china_stock_trade_2021"."sjl" IS '市净率';
+
+-- ----------------------------
 -- Table structure for t_china_stock_trade_current
 -- ----------------------------
 DROP TABLE IF EXISTS "public"."t_china_stock_trade_current";
@@ -1527,6 +1603,13 @@ UNION ALL
 ALTER TABLE "public"."t_china_index_1990_2010" ADD CONSTRAINT "pk" PRIMARY KEY ("idd");
 
 -- ----------------------------
+-- Indexes structure for table t_china_stock_concept_eastmoney_dzb
+-- ----------------------------
+CREATE INDEX "idx_ t_china_stock_concept_eastmoney_dzb" ON "public"."t_china_stock_concept_eastmoney_dzb" USING btree (
+  "concept_dm" COLLATE "pg_catalog"."default" "pg_catalog"."text_ops" ASC NULLS LAST
+);
+
+-- ----------------------------
 -- Indexes structure for table t_china_stock_finance_dupont
 -- ----------------------------
 CREATE INDEX "idx_t_china_stock_finance_dupont" ON "public"."t_china_stock_finance_dupont" USING btree (
@@ -1715,5 +1798,15 @@ CREATE INDEX "idx_t_china_stock_trade_2020_date" ON "public"."t_china_stock_trad
   "trade_date" "pg_catalog"."date_ops" ASC NULLS LAST
 );
 CREATE INDEX "idx_t_china_stock_trade_2020_symbol" ON "public"."t_china_stock_trade_2020" USING btree (
+  "symbol" COLLATE "pg_catalog"."default" "pg_catalog"."text_ops" ASC NULLS LAST
+);
+
+-- ----------------------------
+-- Indexes structure for table t_china_stock_trade_2021
+-- ----------------------------
+CREATE INDEX "idx_t_china_stock_trade_2020_date_copy1" ON "public"."t_china_stock_trade_2021" USING btree (
+  "trade_date" "pg_catalog"."date_ops" ASC NULLS LAST
+);
+CREATE INDEX "idx_t_china_stock_trade_2020_symbol_copy1" ON "public"."t_china_stock_trade_2021" USING btree (
   "symbol" COLLATE "pg_catalog"."default" "pg_catalog"."text_ops" ASC NULLS LAST
 );
