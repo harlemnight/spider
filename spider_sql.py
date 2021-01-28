@@ -41,8 +41,8 @@ SQL_INSERT_CONCEPTS_10JQKA = 'insert into t_china_stock_concept_10jqka(concept_d
 
 # 同花顺概念成分股票
 SQL_DELETE_CONCEPT_STOCKS_10JQKA = 'delete from t_china_stock_concept_10jqka_dzb where concept_dm = %(concept_dm)s'
-SQL_INSERT_CONCEPT_STOCKS_10JQKA = 'insert into t_china_stock_concept_10jqka_dzb(concept_dm, symbol) values' \
-                                  '(%(concept_dm)s,%(symbol)s)'
+SQL_INSERT_CONCEPT_STOCKS_10JQKA = 'insert into t_china_stock_concept_10jqka_dzb(concept_dm, symbol,symbol_name) values' \
+                                  '(%(concept_dm)s,%(symbol)s,%(symbol_name)s)'
 
 # 同花顺概念列表
 SQL_GET_STOCK_CONCEPTS_10JQKA = 'select concept_dm  From t_china_stock_concept_10jqka s where not exists ' \
