@@ -25,6 +25,7 @@ SQL_INSERT_STOCK_CURRENT_PRICE = 'insert into t_china_stock_trade_current(trade_
                                  '%(change_rate)s,%(amplitude)s,%(turnover)s,%(volume)s,%(money)s,%(total_market)s,' \
                                  '%(circulate_market)s,%(syldt)s,%(sjl)s)'
 
+###################################行业####################################################################
 # 申万二级行业成分股票
 SQL_DELETE_STOCK_INDUSTRY_SW = 'delete from t_china_stock_industry_sw_dzb where hy_dm = %(hy_dm)s'
 SQL_INSERT_STOCK_INDUSTRY_SW = 'insert into t_china_stock_industry_sw_dzb(hy_dm, symbol,symbol_name) values' \
@@ -35,6 +36,9 @@ SQL_GET_STOCK_INDUSTRY_LIST_SW = 'select hy_dm  From t_china_stock_industry_sw s
                                  '( select null from t_xt_logger_mx m  where m.security_type = \'stock\'' \
                                  ' and m.symbol = s.hy_dm	and m.operation = \'init_sw_hy\' )  order by 1'
 
+
+
+###################################概念####################################################################
 # 同花顺概念定义
 SQL_DELETE_CONCEPTS_10JQKA = 'delete from t_china_stock_concept_10jqka'
 SQL_INSERT_CONCEPTS_10JQKA = 'insert into t_china_stock_concept_10jqka(concept_dm, concept_name) values ' \
@@ -67,6 +71,24 @@ SQL_GET_STOCK_CONCEPTS_EASTMONEY = 'select concept_dm  From t_china_stock_concep
                                  '( select null from t_xt_logger_mx m  where m.security_type = \'stock\'' \
                                  ' and m.symbol = s.concept_dm	and m.operation = \'init_eastmoney_concept\' )' \
                                 '  order by 1'
+
+###################################区域####################################################################
+# 东财区域定义
+SQL_DELETE_AREA_EASTMONEY = 'delete from t_china_stock_area_eastmoney'
+SQL_INSERT_AREA_EASTMONEY = 'insert into t_china_stock_area_eastmoney(area_dm, area_name) values ' \
+                                       '(%(area_dm)s,%(area_name)s)'
+
+# 东财区域成分股票
+SQL_DELETE_AREA_STOCKS_EASTMONEY = 'delete from t_china_stock_area_eastmoney_dzb where area_dm = %(area_dm)s'
+SQL_INSERT_AREA_STOCKS_EASTMONEY = 'insert into t_china_stock_area_eastmoney_dzb(area_dm, symbol,symbol_name) values' \
+                                  '(%(area_dm)s,%(symbol)s,%(symbol_name)s)'
+
+# 东财区域列表
+SQL_GET_STOCK_AREA_EASTMONEY = 'select area_dm  From t_china_stock_area_eastmoney s where not exists ' \
+                                 '( select null from t_xt_logger_mx m  where m.security_type = \'stock\'' \
+                                 ' and m.symbol = s.area_dm	and m.operation = \'init_eastmoney_area\' )' \
+                                '  order by 1'
+
 
 # 写日志
 SQL_INSERT_XT_LOGGER_MX = 'insert into t_xt_logger_mx (security_type,symbol,operation,status,business, create_date,' \
