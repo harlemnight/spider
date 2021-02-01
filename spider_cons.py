@@ -180,7 +180,7 @@ CONCEPT_STOCKS = {
 #####################获取地域信息#############################################
 AREA = {
     'eastmoney': {
-        'url': 'http://http://push2.eastmoney.com/api/qt/clist/get?',
+        'url': 'http://push2.eastmoney.com/api/qt/clist/get?',
         'params': {
             'pn': '1',
             'pz': '10000',
@@ -196,7 +196,7 @@ AREA = {
 #####################获取地域信息#############################################
 AREA_STOCKS = {
     'eastmoney': {
-            'url': 'http://http://push2.eastmoney.com/api/qt/clist/get?fs=b:%s',
+            'url': 'http://push2.eastmoney.com/api/qt/clist/get?fs=b:%s&',
             'params': {
                 'pn': '1',
                 'pz': '10000',

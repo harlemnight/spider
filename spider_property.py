@@ -258,7 +258,7 @@ def parse_concept_stocks_count_data(response_text, source):
 if __name__ == '__main__':
     # 10jqka概念基本被废弃
     # rs = get_concepts('10jqka')
-    # rs = get_concepts('eastmoney')
+    rs = get_concepts('eastmoney')
     # print(rs)
     rs = get_concept_stocks('eastmoney', 'BK0490')
     print(rs)
