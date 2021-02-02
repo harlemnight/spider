@@ -12,7 +12,7 @@
  Target Server Version : 120003
  File Encoding         : 65001
 
- Date: 28/01/2021 17:25:08
+ Date: 02/02/2021 18:00:49
 */
 
 
@@ -65,6 +65,32 @@ COMMENT ON COLUMN "public"."t_china_security_market"."market" IS '市场代码�
 COMMENT ON COLUMN "public"."t_china_security_market"."market_name" IS '市场名称';
 COMMENT ON COLUMN "public"."t_china_security_market"."type" IS '标的类型';
 COMMENT ON COLUMN "public"."t_china_security_market"."market_lx" IS '市场代码用于其他使用SH,SZ的地方如东财';
+
+-- ----------------------------
+-- Table structure for t_china_stock_area_eastmoney
+-- ----------------------------
+DROP TABLE IF EXISTS "public"."t_china_stock_area_eastmoney";
+CREATE TABLE "public"."t_china_stock_area_eastmoney" (
+  "area_dm" varchar(12) COLLATE "pg_catalog"."default",
+  "area_name" varchar(300) COLLATE "pg_catalog"."default"
+)
+;
+COMMENT ON COLUMN "public"."t_china_stock_area_eastmoney"."area_dm" IS '区域代码';
+COMMENT ON COLUMN "public"."t_china_stock_area_eastmoney"."area_name" IS '区域名字';
+
+-- ----------------------------
+-- Table structure for t_china_stock_area_eastmoney_dzb
+-- ----------------------------
+DROP TABLE IF EXISTS "public"."t_china_stock_area_eastmoney_dzb";
+CREATE TABLE "public"."t_china_stock_area_eastmoney_dzb" (
+  "area_dm" varchar(30) COLLATE "pg_catalog"."default",
+  "symbol" varchar(30) COLLATE "pg_catalog"."default",
+  "symbol_name" varchar(255) COLLATE "pg_catalog"."default"
+)
+;
+COMMENT ON COLUMN "public"."t_china_stock_area_eastmoney_dzb"."area_dm" IS '区域代码';
+COMMENT ON COLUMN "public"."t_china_stock_area_eastmoney_dzb"."symbol" IS '股票代码';
+COMMENT ON COLUMN "public"."t_china_stock_area_eastmoney_dzb"."symbol_name" IS '股票名称';
 
 -- ----------------------------
 -- Table structure for t_china_stock_concept_10jqka
@@ -303,13 +329,15 @@ CREATE TABLE "public"."t_china_stock_industry_sw" (
   "hy_dm" varchar(30) COLLATE "pg_catalog"."default",
   "hymc" varchar(255) COLLATE "pg_catalog"."default",
   "sjhy_dm" varchar(30) COLLATE "pg_catalog"."default",
-  "lvl" varchar(2) COLLATE "pg_catalog"."default"
+  "lvl" varchar(2) COLLATE "pg_catalog"."default",
+  "index_dm" varchar(30) COLLATE "pg_catalog"."default"
 )
 ;
 COMMENT ON COLUMN "public"."t_china_stock_industry_sw"."hy_dm" IS '申万行业代码';
 COMMENT ON COLUMN "public"."t_china_stock_industry_sw"."hymc" IS '申万行业名称';
 COMMENT ON COLUMN "public"."t_china_stock_industry_sw"."sjhy_dm" IS '上级行业代码';
 COMMENT ON COLUMN "public"."t_china_stock_industry_sw"."lvl" IS '层级';
+COMMENT ON COLUMN "public"."t_china_stock_industry_sw"."index_dm" IS '指数代码（聚宽用的这个代码）';
 
 -- ----------------------------
 -- Table structure for t_china_stock_industry_sw_dzb
@@ -1268,6 +1296,17 @@ COMMENT ON COLUMN "public"."t_china_stock_trade_history"."total_market" IS '总�
 COMMENT ON COLUMN "public"."t_china_stock_trade_history"."circulate_market" IS '流通市值';
 
 -- ----------------------------
+-- Table structure for t_dm_jqdata_market
+-- ----------------------------
+DROP TABLE IF EXISTS "public"."t_dm_jqdata_market";
+CREATE TABLE "public"."t_dm_jqdata_market" (
+  "market_name" varchar(255) COLLATE "pg_catalog"."default",
+  "market_postfix" varchar(255) COLLATE "pg_catalog"."default",
+  "market_lx" varchar(255) COLLATE "pg_catalog"."default"
+)
+;
+
+-- ----------------------------
 -- Table structure for t_xt_logger_mx
 -- ----------------------------
 DROP TABLE IF EXISTS "public"."t_xt_logger_mx";
@@ -1601,6 +1640,13 @@ UNION ALL
 -- Primary Key structure for table t_china_index_1990_2010
 -- ----------------------------
 ALTER TABLE "public"."t_china_index_1990_2010" ADD CONSTRAINT "pk" PRIMARY KEY ("idd");
+
+-- ----------------------------
+-- Indexes structure for table t_china_stock_area_eastmoney_dzb
+-- ----------------------------
+CREATE INDEX "idx_ t_china_stock_concept_eastmoney_dzb_copy1" ON "public"."t_china_stock_area_eastmoney_dzb" USING btree (
+  "area_dm" COLLATE "pg_catalog"."default" "pg_catalog"."text_ops" ASC NULLS LAST
+);
 
 -- ----------------------------
 -- Indexes structure for table t_china_stock_concept_eastmoney_dzb

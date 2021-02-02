@@ -253,9 +253,10 @@ def req_cooke():
 
 
 if __name__ == '__main__':
-    # juKuanLogin()
-    # is_auth = is_auth()
-    web_screen_spider()
+    juKuanLogin()
+    is_auth = is_auth()
+    print(is_auth)
+    # web_screen_spider()
     #get_cook2()
     #req_cooke()
     # res = get_all_securities(types=[], date=None)
