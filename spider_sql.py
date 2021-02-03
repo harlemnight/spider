@@ -25,7 +25,8 @@ SQL_INSERT_STOCK_CURRENT_PRICE = 'insert into t_china_stock_trade_current(trade_
                                  '%(change_rate)s,%(amplitude)s,%(turnover)s,%(volume)s,%(money)s,%(total_market)s,' \
                                  '%(circulate_market)s,%(syldt)s,%(sjl)s)'
 
-###################################行业####################################################################
+###################################申万行业####################################################################
+#####新浪申万二级行业#######
 # 申万二级行业成分股票
 SQL_DELETE_STOCK_INDUSTRY_SW = 'delete from t_china_stock_industry_sw_dzb where hy_dm = %(hy_dm)s'
 SQL_INSERT_STOCK_INDUSTRY_SW = 'insert into t_china_stock_industry_sw_dzb(hy_dm, symbol,symbol_name) values' \
@@ -35,6 +36,11 @@ SQL_INSERT_STOCK_INDUSTRY_SW = 'insert into t_china_stock_industry_sw_dzb(hy_dm,
 SQL_GET_STOCK_INDUSTRY_LIST_SW = 'select hy_dm  From t_china_stock_industry_sw s where lvl = %(lvl)s and not exists ' \
                                  '( select null from t_xt_logger_mx m  where m.security_type = \'stock\'' \
                                  ' and m.symbol = s.hy_dm	and m.operation = \'init_sw_hy\' )  order by 1'
+
+
+########################################聚宽申万行业#################################
+SQL_INSERT_STOCK_JQDATA_SWHY = 'insert into t_jqdata_swhy (swhy_dm,swhymc,swhylevel) values ' \
+                               '(%(swhy_dm)s,%(swhymc)s,%(swhylevel)s)'
 
 
 

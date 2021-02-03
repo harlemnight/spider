@@ -252,10 +252,21 @@ def req_cooke():
     print(cookie)
 
 
+
+
+
+
 if __name__ == '__main__':
     juKuanLogin()
     is_auth = is_auth()
-    print(is_auth)
+    c = get_industries(name='sw_l1', date=None)
+    print(c)
+    c = get_industries(name='sw_l2', date=None)
+    print(c)
+    c = get_industries(name='sw_l3', date=None)
+    print(c)
+    d = get_industry("600519.XSHG", date="2018-06-01")
+    print(d)
     # web_screen_spider()
     #get_cook2()
     #req_cooke()
