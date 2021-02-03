@@ -7,6 +7,11 @@ def get_jqdata_swhy(level):
      print(rs)
      dao = rs.to_dict(orient='index')
      print(dao)
+     print(dao.keys())
+
+     print(dao.values()[])
+     #dao2 = dict(zip(dao.keys(),dao.values()['name']))
+     #print(dao2)
 
 
 if __name__ == '__main__':
