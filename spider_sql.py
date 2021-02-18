@@ -39,9 +39,14 @@ SQL_GET_STOCK_INDUSTRY_LIST_SW = 'select hy_dm  From t_china_stock_industry_sw s
 
 
 ########################################聚宽申万行业#################################
+SQL_DELETE_STOCK_JQDATA_SWHY = 'delete from t_jqdata_swhy where swhylevel = %(swhylevel)s'
 SQL_INSERT_STOCK_JQDATA_SWHY = 'insert into t_jqdata_swhy (swhy_dm,swhymc,swhylevel) values ' \
                                '(%(swhy_dm)s,%(swhymc)s,%(swhylevel)s)'
 
+
+SQL_DELETE_STOCK_JQDATA_SWHY = 'delete from t_jqdata_swhy where swhylevel = %(swhylevel)s'
+SQL_INSERT_STOCK_JQDATA_SWHY = 'insert into t_jqdata_swhy (swhy_dm,swhymc,swhylevel) values ' \
+                               '(%(swhy_dm)s,%(swhymc)s,%(swhylevel)s)'
 
 
 ###################################概念####################################################################

@@ -8,8 +8,14 @@ def get_jqdata_swhy(level):
      :param level: 聚宽申万行业1，2，3级 sw_l1,sw_l2,sw_l3
      :return:
      """
-     data = get_industries(name=level)
-     rs = dict(zip(data.index, data['name']))
+     res = get_industries(name=level)
+     rs = []
+     for row in res.itertuples():
+        data = {}
+        data['swhy_dm'] = row.Index
+        data['swhymc'] = row.name
+        data['swhylevel'] = level
+        rs.append(data)
      return rs
 
 
@@ -28,6 +34,5 @@ if __name__ == '__main__':
     print(rs)
     datas = get_jqdata_swhy_stocks('801081')
     print(datas)
-    print(len(datas))
     #d = get_industry("600519.XSHG", date=None)
     # print(rs)
