@@ -44,10 +44,15 @@ SQL_INSERT_STOCK_JQDATA_SWHY = 'insert into t_jqdata_swhy (swhy_dm,swhymc,swhyle
                                '(%(swhy_dm)s,%(swhymc)s,%(swhylevel)s)'
 
 
-SQL_DELETE_STOCK_JQDATA_SWHY = 'delete from t_jqdata_swhy where swhylevel = %(swhylevel)s'
-SQL_INSERT_STOCK_JQDATA_SWHY = 'insert into t_jqdata_swhy (swhy_dm,swhymc,swhylevel) values ' \
-                               '(%(swhy_dm)s,%(swhymc)s,%(swhylevel)s)'
+# 获取行业代码
+SQL_GET_STOCK_JQDATA_INDUSTRY_SWHY = 'select swhy_dm  From t_jqdata_swhy s where  not exists ' \
+                                 '( select null from t_xt_logger_mx m  where m.security_type = \'stock\'' \
+                                 ' and m.symbol = s.swhy_dm	and m.operation = \'init_jqdata_swhy\' )  order by 1'
 
+# 申万行业成分股票
+SQL_DELETE_STOCK_JQDATA_INDUSTRY_SWHY = 'delete from t_jqdata_swhy_dzb where swhy_dm = %(swhy_dm)s'
+SQL_INSERT_STOCK_JQDATA_INDUSTRY_SWHY = 'insert into t_jqdata_swhy_dzb(swhy_dm, symbol) values' \
+                               ' (%(swhy_dm)s,%(symbol)s)'
 
 ###################################概念####################################################################
 # 同花顺概念定义
