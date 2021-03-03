@@ -255,12 +255,44 @@ FINANCE_DUPONT_STOCKS = {
 }
 
 
-# ######################F10财务数据杜邦分析################################################################################
+# ######################融资融券################################################################################
 RZRQ_STOCK = {
     'eastmoney': {
             'url': 'http://datacenter.eastmoney.com/api/data/get?filter=(scode="%s")&',
             'params': {
                 'type': 'RPTA_WEB_RZRQ_GGMX',
+                'sty': 'ALL',
+                'st': 'date',
+                'sr': '-1',
+                'p': '1',
+                'ps': '90'
+            },
+            'headers': HEADERS
+        }
+}
+
+
+# ######################沪深股通################################################################################
+HSGT_TJ_STOCK = {
+    'eastmoney': {
+            'url': 'http://dcfm.eastmoney.com//em_mutisvcexpandinterface/api/js/get?',
+            'params': {
+                'type': 'RPTA_WEB_RZRQ_GGMX',
+                'sty': 'ALL',
+                'st': 'date',
+                'sr': '-1',
+                'p': '1',
+                'ps': '90'
+            },
+            'headers': HEADERS
+        }
+}
+
+HSGT_MX_STOCK = {
+    'eastmoney': {
+            'url': 'http://dcfm.eastmoney.com//em_mutisvcexpandinterface/api/js/get?',
+            'params': {
+                'type': 'HSGTSHHDDET',
                 'sty': 'ALL',
                 'st': 'date',
                 'sr': '-1',
