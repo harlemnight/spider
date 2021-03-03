@@ -253,3 +253,20 @@ FINANCE_DUPONT_STOCKS = {
     }
   }
 }
+
+
+# ######################F10财务数据杜邦分析################################################################################
+RZRQ_STOCK = {
+    'eastmoney': {
+            'url': 'http://datacenter.eastmoney.com/api/data/get?filter=(scode="%s")&',
+            'params': {
+                'type': 'RPTA_WEB_RZRQ_GGMX',
+                'sty': 'ALL',
+                'st': 'date',
+                'sr': '-1',
+                'p': '1',
+                'ps': '90'
+            },
+            'headers': HEADERS
+        }
+}

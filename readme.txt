@@ -11,3 +11,7 @@ https://blog.csdn.net/baidu_32542573/article/details/81278550?utm_medium=distrib
 200.168.7.28
 8888
 chls.pro/ssl
+
+对于andriod 7.0以上的系统默认限制的用户的CA证书 因此无法抓取https的请求
+1.只有使用andriod 7.0以下的版本
+
