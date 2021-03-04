@@ -48,18 +48,18 @@ def parse_hsgttj_data(response, symbol, source):
     hsgts = []
     # eastmoney（东方财富）
     if source == 'eastmoney':
-        hsgt = response.json().get('result').get('data')
+        hsgt = response.json()
         if hsgt:
             for i in range(len(hsgt)):
                 data = {}
                 data['rq'] = hsgt[i].get('DATE')
                 data['symbol'] = symbol
                 data['symbol_name'] = hsgt[i].get('SECNAME')
-                hsgt.append(data)
+                hsgts.append(data)
     return hsgts
 
 
-def get_stock_hsgt_mx(symbol, source):
+def get_stock_hsgt_mx(symbol, source, startdate, enddate):
     """
         获取股票沪深股通明细信息
     Parameters
@@ -71,7 +71,7 @@ def get_stock_hsgt_mx(symbol, source):
     headers = spcon.HSGT_MX_STOCK[source]['headers']
     params = spcon.HSGT_MX_STOCK[source]['params']
     try:
-        base_url = base_url % symbol
+        base_url = base_url % (symbol, startdate, enddate)
         print(base_url + urlencode(params))
         response = requests.get(base_url + urlencode(params), headers=headers)
         if response.status_code == 200:
@@ -92,19 +92,33 @@ def parse_hsgtmx_data(response, symbol, source):
     hsgts = []
     # eastmoney（东方财富）
     if source == 'eastmoney':
-        hsgt = response.json().get('result').get('data')
+        hsgt = response.json()
         if hsgt:
             for i in range(len(hsgt)):
                 data = {}
-                data['rq'] = hsgt[i].get('DATE')
+                data['rq'] = hsgt[i].get('HDDATE')
                 data['symbol'] = symbol
-                data['symbol_name'] = hsgt[i].get('SECNAME')
-                hsgt.append(data)
+                data['symbol_name'] = hsgt[i].get('SNAME')
+                data['participantcode'] = hsgt[i].get('PARTICIPANTCODE')
+                data['participantname'] = hsgt[i].get('PARTICIPANTNAME')
+                data['shareholdsum'] = hsgt[i].get('SHAREHOLDSUM')
+                data['sharesrate'] = hsgt[i].get('SHARESRATE')
+                data['closeprice'] = hsgt[i].get('CLOSEPRICE')
+                data['zdf'] = hsgt[i].get('ZDF')
+                data['shareholdprice'] = hsgt[i].get('SHAREHOLDPRICE')
+                data['shareholdpriceone'] = hsgt[i].get('SHAREHOLDPRICEONE')
+                data['shareholdpricefive'] = hsgt[i].get('SHAREHOLDPRICEFIVE')
+                data['shareholdpriceten'] = hsgt[i].get('SHAREHOLDPRICETEN')
+                data['market'] = hsgt[i].get('MARKET')
+                data['shareholdsumchg'] = hsgt[i].get('ShareHoldSumChg')
+                data['zb'] = hsgt[i].get('Zb')
+                data['zzb'] = hsgt[i].get('Zzb')
+                hsgts.append(data)
     return hsgts
 
 
 if __name__ == '__main__':
     rs = get_stock_hsgt_tj('000070', 'eastmoney')
     print(rs)
-    rs = get_stock_hsgt_mx('000070', 'eastmoney')
+    rs = get_stock_hsgt_mx('000070', 'eastmoney','2021-03-01','2021-03-03')
     print(rs)

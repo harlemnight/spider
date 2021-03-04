@@ -275,14 +275,15 @@ RZRQ_STOCK = {
 # ######################沪深股通################################################################################
 HSGT_TJ_STOCK = {
     'eastmoney': {
-            'url': 'http://dcfm.eastmoney.com//em_mutisvcexpandinterface/api/js/get?',
+            'url': 'http://dcfm.eastmoney.com//em_mutisvcexpandinterface/api/js/get?'
+                   'filter=(SCODE=\'%s\')&',
             'params': {
-                'type': 'RPTA_WEB_RZRQ_GGMX',
-                'sty': 'ALL',
-                'st': 'date',
+                'token': '70f12f2f4f091e459a279469fe49eca5',
+                'type': 'HSGTHDSTA',
+                'st': 'HDDATE',
                 'sr': '-1',
                 'p': '1',
-                'ps': '90'
+                'ps': '1000'
             },
             'headers': HEADERS
         }
@@ -290,14 +291,15 @@ HSGT_TJ_STOCK = {
 
 HSGT_MX_STOCK = {
     'eastmoney': {
-            'url': 'http://dcfm.eastmoney.com//em_mutisvcexpandinterface/api/js/get?',
+            'url': 'http://dcfm.eastmoney.com//em_mutisvcexpandinterface/api/js/get?'
+                   'filter=(SCODE=''%s'')(HDDATE>=^%s^ and HDDATE<=^%s^)&',
             'params': {
+                'token': '70f12f2f4f091e459a279469fe49eca5',
                 'type': 'HSGTSHHDDET',
-                'sty': 'ALL',
-                'st': 'date',
-                'sr': '-1',
+                'st': 'HDDATE,SHAREHOLDPRICE',
+                'sr': '3',
                 'p': '1',
-                'ps': '90'
+                'ps': '100000'
             },
             'headers': HEADERS
         }
