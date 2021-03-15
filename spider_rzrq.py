@@ -7,6 +7,7 @@ import ast
 from lxml import etree
 import re
 from selenium import webdriver
+
 from selenium.webdriver.chrome.options import Options
 from selenium.webdriver import ChromeOptions
 import time
@@ -28,7 +29,6 @@ def get_stock_rzrq(symbol, source):
     params = spcon.RZRQ_STOCK[source]['params']
     try:
         base_url = base_url % symbol
-        print(base_url + urlencode(params))
         response = requests.get(base_url + urlencode(params), headers=headers)
         if response.status_code == 200:
             return parse_rzrq_data(response, symbol, source)

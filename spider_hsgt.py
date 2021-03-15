@@ -28,6 +28,7 @@ def get_stock_hsgt_tj(symbol, source):
     params = spcon.HSGT_TJ_STOCK[source]['params']
     try:
         base_url = base_url % symbol
+        print(base_url + urlencode(params))
         response = requests.get(base_url + urlencode(params), headers=headers)
         if response.status_code == 200:
             return parse_hsgttj_data(response, symbol, source)
@@ -83,6 +84,7 @@ def get_stock_hsgt_mx(symbol, source, startdate, enddate):
     params = spcon.HSGT_MX_STOCK[source]['params']
     try:
         base_url = base_url % (symbol, startdate, enddate)
+        print(base_url + urlencode(params))
         response = requests.get(base_url + urlencode(params), headers=headers)
         if response.status_code == 200:
             return parse_hsgtmx_data(response, symbol, source)
@@ -128,7 +130,7 @@ def parse_hsgtmx_data(response, symbol, source):
 
 
 if __name__ == '__main__':
-    rs = get_stock_hsgt_tj('000070', 'eastmoney')
-    print(rs)
+    #rs = get_stock_hsgt_tj('000070', 'eastmoney')
+    #print(rs)
     rs = get_stock_hsgt_mx('000070', 'eastmoney','2021-03-01','2021-03-03')
     print(rs)
