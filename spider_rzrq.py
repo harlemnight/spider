@@ -27,18 +27,30 @@ def get_rzrq_stocks(source):
     headers = spcon.RZRQ[source]['headers']
     params = spcon.RZRQ[source]['params']
     page = 1
-    page_date = '2021-3-25'
-    page_count = 0
+    page_date = dt.date.today() + dt.timedelta(-1)
+    rs_count = []
     try:
         base_url = base_url % (page, page_date)
+        print(base_url + urlencode(params))
         response = requests.get(base_url + urlencode(params), headers=headers)
         if response.status_code == 200:
-            page_count =  parse_rzrq_data_count(response, source)
+            rs_count = parse_rzrq_data_count(response, source)
     except RequestException:
-        page_count = 0
-    if page_count > 0 :
-        for i in page_count:
-
+        rs_count = []
+    rs = []
+    print(rs_count)
+    if rs_count is not None:
+        for i in range(rs_count[0]):
+            base_url = spcon.RZRQ[source]['url']
+            base_url = base_url % (i+1, page_date)
+            print(base_url)
+            response = requests.get(base_url + urlencode(params), headers=headers)
+            if response.status_code == 200:
+                rzrqs = parse_rzrq_data(response, source)
+            if rzrqs is None:
+                return None
+            rs.extend(rzrqs)
+    return rs
 
 
 def parse_rzrq_data_count(response, source):
@@ -50,17 +62,19 @@ def parse_rzrq_data_count(response, source):
     Return
     --------
      """
-    rzrqs_pages = 0
+    rzrqs_pages = []
     # eastmoney（东方财富）
     if source == 'eastmoney':
         try:
-            rzrqs_pages = response.json().get('result').get('pages')
+            rs = response.json().get('result')
+            rzrqs_pages.append(rs.get('pages'))
+            rzrqs_pages.append(rs.get('count'))
         except Exception as e:
-            return 0
+            return None
     return rzrqs_pages
 
 
-def parse_rzrq_data(response, symbol, source):
+def parse_rzrq_data(response,source):
     """
         解析融资融券的股票列表
     Parameters
@@ -77,7 +91,7 @@ def parse_rzrq_data(response, symbol, source):
             if rzrq:
                 for i in range(len(rzrq)):
                     data = {}
-                    data['symbol'] = symbol
+                    data['symbol'] = rzrq[i].get('SCODE')
                     data['symbol_name'] = rzrq[i].get('SECNAME')
                     rzrqs.append(data)
         except Exception as e:
@@ -148,5 +162,7 @@ def parse_stock_rzrq_data(response, symbol, source):
 
 
 if __name__ == '__main__':
-    rs = get_stock_rzrq('000070', 'eastmoney')
-    print(rs)
+    rs = get_rzrq_stocks('eastmoney')
+    print(len(rs))
+    #rs = get_stock_rzrq('000070', 'eastmoney')
+    #print(rs)

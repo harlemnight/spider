@@ -258,8 +258,8 @@ FINANCE_DUPONT_STOCKS = {
 # ######################融资融券################################################################################
 RZRQ = {
     'eastmoney': {
-            'url': 'http://datacenter.eastmoney.com/api/data/get?p=1&filter=(TRADE_MARKET_CODE in ("069001001001",'
-                   '"069001001006","069001002001","069001002002","069001002003"))(date="2021-03-25")',
+            'url': 'http://datacenter.eastmoney.com/api/data/get?p=%s&filter=(TRADE_MARKET_CODE in ("069001001001",'
+                   '"069001001006","069001002001","069001002002","069001002003"))(date=\'%s\')&',
             'params': {
                 'type': 'RPTA_WEB_RZRQ_GGMX',
                 'sty': 'ALL',
