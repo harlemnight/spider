@@ -183,6 +183,16 @@ SQL_INSERT_STOCKS_FINANCE_DUPONT = 'INSERT INTO t_china_stock_finance_dupont(sym
                                    '%(zzcjll)s, %(zzczzl)s)'
 
 ###################################融资融券####################################################
+SQL_GET_STOCK_LIST_RZRQ = 'select l.symbol,t.market_lx||l.symbol pre_symbol from t_china_security_list l,' \
+                     ' t_china_security_market t  ' \
+                     'where 1=1 and substr(l.symbol,1,3) = t.pre_symbol and l.type = \'stock\'' \
+                     ' and not exists (  select null from t_xt_logger_mx mx where mx.symbol = l.symbol' \
+                     ' and mx.security_type = \'stock\' and mx.operation = \'init_rzrq\' )'
 
-
+SQL_DELETE_STOCKS_RZRQ = 'delete from t_china_stock_rzrq where symbol = %(symbol)s '
+SQL_INSERT_STOCKS_RZRQ = 'insert into t_china_stock_rzrq(symbol,symbol_name,rq,rzye,rqyl,rzrqye,rqye,rqmcl,' \
+                         'rzrqyecz,rzmre,sz,rzyezb,rzche,rzjme,rqchl,rqjmg,spj,zdf) values' \
+                          '(%(symbol)s,%(symbol_name)s,%(rq)s,%(rzye)s,%(rqyl)s,%(rzrqye)s,%(rqye)s,%(rqmcl)s,' \
+                         '%(rzrqyecz)s,%(rzmre)s,%(sz)s,%(rzyezb)s,%(rzche)s,%(rzjme)s,%(rqchl)s,' \
+                         '%(rqjmg)s,%(spj)s,%(zdf)s)'
 ###################################沪深股通####################################################
