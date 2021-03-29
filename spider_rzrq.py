@@ -15,7 +15,7 @@ import urllib.request
 import urllib.error
 
 
-def get_rzrq_stocks(source):
+def get_rzrq_stocks(source, page_date):
     """
             获取融资融券的股票
         Parameters
@@ -27,23 +27,19 @@ def get_rzrq_stocks(source):
     headers = spcon.RZRQ[source]['headers']
     params = spcon.RZRQ[source]['params']
     page = 1
-    page_date = dt.date.today() + dt.timedelta(-1)
     rs_count = []
     try:
         base_url = base_url % (page, page_date)
-        print(base_url + urlencode(params))
         response = requests.get(base_url + urlencode(params), headers=headers)
         if response.status_code == 200:
             rs_count = parse_rzrq_data_count(response, source)
     except RequestException:
         rs_count = []
     rs = []
-    print(rs_count)
     if rs_count is not None:
         for i in range(rs_count[0]):
             base_url = spcon.RZRQ[source]['url']
             base_url = base_url % (i+1, page_date)
-            print(base_url)
             response = requests.get(base_url + urlencode(params), headers=headers)
             if response.status_code == 200:
                 rzrqs = parse_rzrq_data(response, source)
@@ -93,6 +89,7 @@ def parse_rzrq_data(response,source):
                     data = {}
                     data['symbol'] = rzrq[i].get('SCODE')
                     data['symbol_name'] = rzrq[i].get('SECNAME')
+                    data['type'] = 'stock'
                     rzrqs.append(data)
         except Exception as e:
             return None
@@ -162,7 +159,7 @@ def parse_stock_rzrq_data(response, symbol, source):
 
 
 if __name__ == '__main__':
-    rs = get_rzrq_stocks('eastmoney')
-    print(len(rs))
+    rs = get_rzrq_stocks('eastmoney', '2021-03-26')
+    print(rs)
     #rs = get_stock_rzrq('000070', 'eastmoney')
     #print(rs)

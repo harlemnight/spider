@@ -31,7 +31,7 @@ def get_all_ready_stocks_rzrq():
         db.close_dbcon(con)
 
 
-def insert_rzrq(symbol):
+def insert_stock_rzrq(symbol):
     rzrqs = sr.get_stock_rzrq(symbol, 'eastmoney')
     try:
         con = db.get_dbcon()
@@ -53,7 +53,7 @@ def insert_rzrq(symbol):
     return 0
 
 
-def init_rzrq():
+def init_stock_rzrq():
     p_security_type = 'stock'
     res_data = get_all_ready_stocks_rzrq()
     p_end_date = dt.datetime.now().strftime('%Y%m%d')
@@ -61,14 +61,38 @@ def init_rzrq():
     if res_data:
         for res in res_data:
             p_symbol = res['symbol']
-            rnt = insert_rzrq(p_symbol)
+            rnt = insert_stock_rzrq(p_symbol)
             status = 'y' if rnt else 'n'
-            log.insert_logger(p_security_type, p_symbol, 'init_rzrq', status, 'rzrq',
-                          p_end_date, p_batch_number, rnt, 'init rzrq')
+            log.insert_logger(p_security_type, p_symbol, 'init_stock_rzrq', status, 'rzrq',
+                          p_end_date, p_batch_number, rnt, 'init stock rzrq')
             time.sleep(1)
-    print('init rzrq end')
+    print('init stock rzrq end')
+
+
+def insert_rzrq_list():
+    rzrq_list = sr.get_rzrq_stocks('eastmoney', '2021-03-26')
+    print(rzrq_list)
+    try:
+        con = db.get_dbcon()
+        cursor = con.cursor()
+        params = rzrq_list
+        rownum = 0
+        if rzrq_list is not None:
+            cursor.execute(sql.SQL_DELETE_RZRQ_LIST)
+            cursor.executemany(sql.SQL_INSERT_RZRQ_LIST, rzrq_list)
+            rownum += cursor.rowcount
+        con.commit()
+        return rownum
+    except Exception as e:
+        db.rollback(con)
+        print('insert rzrq list failed' + str(e))
+        return 0
+    finally:
+        db.close_dbcon(con)
+    return 0
 
 
 if __name__ == '__main__':
     #insert_rzrq('000070')
-    init_rzrq()
+    insert_rzrq_list()
+    #init_stock_rzrq()

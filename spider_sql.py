@@ -183,6 +183,11 @@ SQL_INSERT_STOCKS_FINANCE_DUPONT = 'INSERT INTO t_china_stock_finance_dupont(sym
                                    '%(zzcjll)s, %(zzczzl)s)'
 
 ###################################融资融券####################################################
+SQL_DELETE_RZRQ_LIST = 'delete from t_china_rzrq_list'
+SQL_INSERT_RZRQ_LIST = 'insert into  t_china_rzrq_list(symbol,symbol_name,type) ' \
+                       'values(%(symbol)s,%(symbol_name)s,%(type)s)'
+
+
 SQL_GET_STOCK_LIST_RZRQ = 'select l.symbol,t.market_lx||l.symbol pre_symbol from t_china_security_list l,' \
                      ' t_china_security_market t  ' \
                      'where 1=1 and substr(l.symbol,1,3) = t.pre_symbol and l.type = \'stock\'' \
