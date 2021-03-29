@@ -188,11 +188,11 @@ SQL_INSERT_RZRQ_LIST = 'insert into  t_china_rzrq_list(symbol,symbol_name,type) 
                        'values(%(symbol)s,%(symbol_name)s,%(type)s)'
 
 
-SQL_GET_STOCK_LIST_RZRQ = 'select l.symbol,t.market_lx||l.symbol pre_symbol from t_china_security_list l,' \
+SQL_GET_STOCK_LIST_RZRQ = 'select l.symbol,t.market_lx||l.symbol pre_symbol from t_china_rzrq_list l,' \
                      ' t_china_security_market t  ' \
                      'where 1=1 and substr(l.symbol,1,3) = t.pre_symbol and l.type = \'stock\'' \
                      ' and not exists (  select null from t_xt_logger_mx mx where mx.symbol = l.symbol' \
-                     ' and mx.security_type = \'stock\' and mx.operation = \'init_rzrq\' )'
+                     ' and mx.security_type = \'stock\' and mx.operation = \'init_stock_rzrq\' )'
 
 SQL_DELETE_STOCKS_RZRQ = 'delete from t_china_stock_rzrq where symbol = %(symbol)s '
 SQL_INSERT_STOCKS_RZRQ = 'insert into t_china_stock_rzrq(symbol,symbol_name,rq,rzye,rqyl,rzrqye,rqye,rqmcl,' \

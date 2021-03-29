@@ -71,7 +71,6 @@ def init_stock_rzrq():
 
 def insert_rzrq_list():
     rzrq_list = sr.get_rzrq_stocks('eastmoney', '2021-03-26')
-    print(rzrq_list)
     try:
         con = db.get_dbcon()
         cursor = con.cursor()
@@ -95,4 +94,4 @@ def insert_rzrq_list():
 if __name__ == '__main__':
     #insert_rzrq('000070')
     insert_rzrq_list()
-    #init_stock_rzrq()
+    init_stock_rzrq()
