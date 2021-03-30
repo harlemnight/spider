@@ -159,7 +159,7 @@ def parse_stock_rzrq_data(response, symbol, source):
 
 
 if __name__ == '__main__':
-    rs = get_rzrq_stocks('eastmoney', '2021-03-26')
-    print(rs)
-    #rs = get_stock_rzrq('000070', 'eastmoney')
+    #rs = get_rzrq_stocks('eastmoney', '2021-03-26')
     #print(rs)
+    rs = get_stock_rzrq('600318', 'eastmoney')
+    print(rs)

@@ -308,10 +308,9 @@ HSGT_TJ_STOCK = {
 HSGT_MX_STOCK = {
     'eastmoney': {
             'url': 'http://dcfm.eastmoney.com//em_mutisvcexpandinterface/api/js/get?'
-                   'filter=(SCODE=''%s'')(HDDATE>=^%s^ and HDDATE<=^%s^)&',
+                   'filter=(SCODE=''%s'')(HDDATE>=^%s^ and HDDATE<=^%s^)&type=%s&',
             'params': {
                 'token': '70f12f2f4f091e459a279469fe49eca5',
-                'type': 'HSGTSHHDDET',
                 'st': 'HDDATE,SHAREHOLDPRICE',
                 'sr': '3',
                 'p': '1',
