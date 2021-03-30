@@ -92,6 +92,6 @@ def insert_rzrq_list():
 
 
 if __name__ == '__main__':
-    #insert_rzrq('000070')
-    insert_rzrq_list()
-    init_stock_rzrq()
+    insert_stock_rzrq('002185')
+    #insert_rzrq_list()
+    #init_stock_rzrq()

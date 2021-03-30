@@ -200,4 +200,26 @@ SQL_INSERT_STOCKS_RZRQ = 'insert into t_china_stock_rzrq(symbol,symbol_name,rq,r
                           '(%(symbol)s,%(symbol_name)s,%(rq)s,%(rzye)s,%(rqyl)s,%(rzrqye)s,%(rqye)s,%(rqmcl)s,' \
                          '%(rzrqyecz)s,%(rzmre)s,%(sz)s,%(rzyezb)s,%(rzche)s,%(rzjme)s,%(rqchl)s,' \
                          '%(rqjmg)s,%(spj)s,%(zdf)s)'
+
 ###################################沪深股通####################################################
+SQL_DELETE_HSGT_LIST = 'delete from t_china_hsgt_list'
+SQL_INSERT_HSGT_LIST = 'insert into  t_china_hsgt_list(symbol,symbol_name,type) ' \
+                       'values(%(symbol)s,%(symbol_name)s,%(type)s)'
+
+
+SQL_DELETE_STOCK_HSGT_TJ = 'delete from t_china_stock_hsgt_tj where symbol = %(symbol)s '
+SQL_INSERT_STOCK_HSGT_TJ = 'insert into t_china_stock_hsgt_tj(symbol,symbol_name, rq, shareholdsum, sharesrate,' \
+                           ' closeprice, zdf, shareholdprice, shareholdpriceone, shareholdpricefive,' \
+                           ' shareholdpriceten, market, shareholdsumchg, zb,zzb) values (%(symbol)s, %(symbol_name)s,' \
+                           ' %(rq)s, %(shareholdsum)s, %(sharesrate)s, %(closeprice)s, %(zdf)s, %(shareholdprice)s, ' \
+                           '%(shareholdpriceone)s, %(shareholdpricefive)s, %(shareholdpriceten)s, ' \
+                           '%(market)s, %(shareholdsumchg)s, %(zb)s, %(zzb)s)'
+
+SQL_DELETE_STOCK_HSGT_MX = 'delete from t_china_stock_hsgt_mx where symbol = %(symbol)s '
+SQL_INSERT_STOCK_HSGT_MX = 'insert into t_china_stock_hsgt_mx(symbol, symbol_name, rq, participantcode, ' \
+                           'participantname, shareholdsum, sharesrate, closeprice, zdf, shareholdprice, ' \
+                           'shareholdpriceone, shareholdpricefive, shareholdpriceten, market, shareholdsumchg,' \
+                           ' zb, zzb) values (%(symbol)s, %(symbol_name)s, %(rq)s, %(participantcode)s, ' \
+                           '%(participantname)s, %(shareholdsum)s, %(sharesrate)s, %(closeprice)s, %(zdf)s,' \
+                           ' %(shareholdprice)s, %(shareholdpriceone)s, %(shareholdpricefive)s, ' \
+                           '%(shareholdpriceten)s, %(market)s, %(shareholdsumchg)s, %(zb)s, %(zzb)s)'
