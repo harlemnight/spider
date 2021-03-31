@@ -15,6 +15,50 @@ import urllib.request
 import urllib.error
 
 
+def get_hsgt_list(source):
+    """
+            获取股票沪深股通列表 HSGT_SH HSGT_SZ 未用
+        Parameters
+        source : eastmoney（东方财富）
+        Return
+        --------
+        """
+    base_url = spcon.HSGT[source]['url']
+    headers = spcon.HSGT[source]['headers']
+    params = spcon.HSGT[source]['params']
+    rq = (dt.datetime.now()-dt.timedelta(days=1)).strftime('%Y-%m-%d')
+    try:
+        base_url = base_url % rq
+        response = requests.get(base_url + urlencode(params), headers=headers)
+        if response.status_code == 200:
+            return parse_hsgt_data(response, source)
+    except RequestException:
+        return None
+
+
+def parse_hsgt_data(response, source):
+    """
+        解析股票沪深股通列表
+    Parameters
+    response : 网络响应
+    source : eastmoney（东方财富）
+    Return
+    --------
+     """
+    hsgts = []
+    # eastmoney（东方财富）
+    if source == 'eastmoney':
+        hsgt = response.json()
+        if hsgt:
+            for i in range(len(hsgt)):
+                data = {}
+                data['symbol'] = hsgt[i].get('SCode')
+                data['symbol_name'] = hsgt[i].get('SName')
+                data['type'] = 'stock'
+                hsgts.append(data)
+    return hsgts
+
+
 def get_stock_hsgt_tj(symbol, source):
     """
         获取股票沪深股通统计信息
@@ -132,7 +176,8 @@ def parse_hsgtmx_data(response, symbol, source):
 
 
 if __name__ == '__main__':
+    rs = get_hsgt_list('eastmoney')
     #rs = get_stock_hsgt_tj('600703', 'eastmoney')
     #print(rs)
-    rs = get_stock_hsgt_mx('600837', 'eastmoney','2021-03-01','2021-03-30')
+    #rs = get_stock_hsgt_mx('600837', 'eastmoney','2021-03-01','2021-03-30')
     print(rs)

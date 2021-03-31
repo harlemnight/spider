@@ -203,7 +203,7 @@ SQL_INSERT_STOCKS_RZRQ = 'insert into t_china_stock_rzrq(symbol,symbol_name,rq,r
 
 ###################################沪深股通####################################################
 SQL_DELETE_HSGT_LIST = 'delete from t_china_hsgt_list'
-SQL_INSERT_HSGT_LIST = 'insert into  t_china_hsgt_list(symbol,symbol_name,type) ' \
+SQL_INSERT_HSGT_LIST = 'insert into t_china_hsgt_list(symbol,symbol_name,type) ' \
                        'values(%(symbol)s,%(symbol_name)s,%(type)s)'
 
 

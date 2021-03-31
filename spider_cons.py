@@ -288,7 +288,53 @@ RZRQ_STOCK = {
 }
 
 
-# ######################沪深股通################################################################################
+#######################沪深股通################################################################################
+HSGT_SH = {
+    'eastmoney': {
+            'url': 'http://push2.eastmoney.com/api/qt/clist/get?',
+            'params': {
+                'pn': '1',
+                'pz': '10000',
+                'po': '1',
+                'np': '1',
+                'fs': 'b:BK0707',
+                'fields': 'f12,f14'
+            },
+            'headers': HEADERS
+        }
+}
+
+HSGT_SZ = {
+    'eastmoney': {
+            'url': 'http://push2.eastmoney.com/api/qt/clist/get?',
+            'params': {
+                'pn': '1',
+                'pz': '10000',
+                'po': '1',
+                'np': '1',
+                'fs': 'b:BK0804',
+                'fields': 'f12,f14'
+            },
+            'headers': HEADERS
+        }
+}
+
+HSGT = {
+    'eastmoney': {
+            'url': 'http://dcfm.eastmoney.com/EM_MutiSvcExpandInterface/api/js/get?'
+                   'filter=(DateType=\'1\' and HdDate=\'%s\')&',
+            'params': {
+                'token': '894050c76af8597a853f5b408b759f5d',
+                'type': 'HSGT20_GGTJ_SUM',
+                'st': 'ShareSZ_Chg_One',
+                'sr': '-1',
+                'p': '1',
+                'ps': '10000'
+            },
+            'headers': HEADERS
+        }
+}
+
 HSGT_TJ_STOCK = {
     'eastmoney': {
             'url': 'http://dcfm.eastmoney.com//em_mutisvcexpandinterface/api/js/get?'
@@ -299,7 +345,7 @@ HSGT_TJ_STOCK = {
                 'st': 'HDDATE',
                 'sr': '-1',
                 'p': '1',
-                'ps': '1000'
+                'ps': '10000'
             },
             'headers': HEADERS
         }
