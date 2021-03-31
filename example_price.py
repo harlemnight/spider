@@ -87,6 +87,7 @@ def insert_batch_current_price(security_type):
         try:
             con = db.get_dbcon()
             cursor = con.cursor()
+            cursor.execute(sql.SQL_DELETE_STOCK_CURRENT_PRICE)
             cursor.executemany(sql.SQL_INSERT_STOCK_CURRENT_PRICE, res)
             rowcount = str(cursor.rowcount)
             con.commit()
@@ -113,7 +114,7 @@ def init_history_stock_price(p_start_date, p_end_date):
             p_symbol = res['symbol']
             rnt = insert_stock_price(p_symbol_net_easy, p_start_date, p_end_date)
             status = 'y' if rnt else 'n'
-            log.insert_logger(p_security_type, p_symbol, 'init_price', status, 'history_price',
+            log.insert_logger(p_security_type, p_symbol, 'init_history_price', status, 'history_price',
                           p_end_date, p_batch_number, rnt, 'init stock price')
             time.sleep(0.5)
     print('init history stock price end')
@@ -122,10 +123,10 @@ def init_history_stock_price(p_start_date, p_end_date):
 if __name__ == '__main__':
     # 初始化标股票 每日4点执行
     init_stocks()
-    start_date = '20200101'
-    end_date = '20201231'
+    #start_date = '20200101'
+    #end_date = '20201231'
     # 补录历史行情
-    init_history_stock_price(start_date, end_date)
+    #init_history_stock_price(start_date, end_date)
     # 记录当日股票收盘行情 4点后执行
     insert_batch_current_price('stock')
 

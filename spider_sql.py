@@ -16,8 +16,9 @@ SQL_GET_STOCK_LIST_NET_EASY = 'select l.symbol,t.market||l.symbol pre_symbol fro
                          ' t_china_security_market t  ' \
                          'where 1=1 and substr(l.symbol,1,3) = t.pre_symbol and l.type = %(type)s' \
                          ' and not exists (  select null from t_xt_logger_mx mx where mx.symbol = l.symbol' \
-                         ' and mx.security_type = %(type)s and mx.operation = \'init_price\' ) '
+                         ' and mx.security_type = %(type)s and mx.operation = \'init_history_price\' ) '
 # 标的当日行情
+SQL_DELETE_STOCK_CURRENT_PRICE = 'delete from t_china_stock_trade_current'
 SQL_INSERT_STOCK_CURRENT_PRICE = 'insert into t_china_stock_trade_current(trade_date, symbol,symbol_name,close,high,' \
                                  'low ,open,pre_close,change_amount,change_rate,amplitude,turnover,volume,money,total' \
                                  '_market,circulate_market,syldt,sjl) values (%(trade_date)s,%(symbol)s,%(symbol_name)s,' \
@@ -207,6 +208,19 @@ SQL_INSERT_HSGT_LIST = 'insert into t_china_hsgt_list(symbol,symbol_name,type) '
                        'values(%(symbol)s,%(symbol_name)s,%(type)s)'
 
 
+SQL_GET_STOCK_LIST_HSGT_TJ = 'select l.symbol,t.market_lx||l.symbol pre_symbol from t_china_hsgt_list l,' \
+                     ' t_china_security_market t  ' \
+                     'where 1=1 and substr(l.symbol,1,3) = t.pre_symbol and l.type = \'stock\'' \
+                     ' and not exists (  select null from t_xt_logger_mx mx where mx.symbol = l.symbol' \
+                     ' and mx.security_type = \'stock\' and mx.operation = \'init_stock_hsgt_tj\' )'
+
+SQL_GET_STOCK_LIST_HSGT_MX = 'select l.symbol,t.market_lx||l.symbol pre_symbol from t_china_hsgt_list l,' \
+                     ' t_china_security_market t  ' \
+                     'where 1=1 and substr(l.symbol,1,3) = t.pre_symbol and l.type = \'stock\'' \
+                     ' and not exists (  select null from t_xt_logger_mx mx where mx.symbol = l.symbol' \
+                     ' and mx.security_type = \'stock\' and mx.operation = \'init_stock_hsgt_mx\' )'
+
+
 SQL_DELETE_STOCK_HSGT_TJ = 'delete from t_china_stock_hsgt_tj where symbol = %(symbol)s '
 SQL_INSERT_STOCK_HSGT_TJ = 'insert into t_china_stock_hsgt_tj(symbol,symbol_name, rq, shareholdsum, sharesrate,' \
                            ' closeprice, zdf, shareholdprice, shareholdpriceone, shareholdpricefive,' \
@@ -223,3 +237,4 @@ SQL_INSERT_STOCK_HSGT_MX = 'insert into t_china_stock_hsgt_mx(symbol, symbol_nam
                            '%(participantname)s, %(shareholdsum)s, %(sharesrate)s, %(closeprice)s, %(zdf)s,' \
                            ' %(shareholdprice)s, %(shareholdpriceone)s, %(shareholdpricefive)s, ' \
                            '%(shareholdpriceten)s, %(market)s, %(shareholdsumchg)s, %(zb)s, %(zzb)s)'
+
