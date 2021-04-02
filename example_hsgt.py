@@ -140,4 +140,4 @@ def init_stock_hsgt_tj():
 if __name__ == '__main__':
     #insert_hsgt_list()
     insert_stock_hsgt_tj('603300')
-    insert_stock_hsgt_mx('603300','2021-03-01','2021-03-30')
+    #insert_stock_hsgt_mx('603300','2021-03-01','2021-03-30')
