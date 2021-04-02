@@ -137,7 +137,25 @@ def init_stock_hsgt_tj():
     print('init stock hsgttj end')
 
 
+def init_stock_hsgt_mx():
+    p_security_type = 'stock'
+    res_data = get_all_ready_stocks_hsgt_mx()
+    p_end_date = dt.datetime.now().strftime('%Y%m%d')
+    p_batch_number = time.time() * 10000000
+    if res_data:
+        for res in res_data:
+            p_symbol = res['symbol']
+            rnt = insert_stock_hsgt_tj(p_symbol)
+            status = 'y' if rnt else 'n'
+            log.insert_logger(p_security_type, p_symbol, 'init_stock_hsgt_mx', status, 'hsgtmx',
+                          p_end_date, p_batch_number, rnt, 'init stock hsgtmx')
+            time.sleep(1)
+    print('init stock hsgtmx end')
+
+
 if __name__ == '__main__':
-    #insert_hsgt_list()
-    insert_stock_hsgt_tj('603300')
-    #insert_stock_hsgt_mx('603300','2021-03-01','2021-03-30')
+    insert_hsgt_list()
+    ks_rq = (dt.datetime.now() - dt.timedelta(days=30)).strftime('%Y-%m-%d')
+    js_rq = (dt.datetime.now()-dt.timedelta(days=1)).strftime('%Y-%m-%d')
+    init_stock_hsgt_tj()
+    #init_stock_hsgt_mx()
