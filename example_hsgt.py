@@ -6,6 +6,56 @@ import spider_hsgt as sh
 import example_logger as log
 
 
+def get_all_ready_stocks_hsgt_tj():
+    try:
+        security_type = 'stock'
+        con = db.get_dbcon()
+        cursor = con.cursor()
+        params = {'type': security_type}
+        cursor.execute(sql.SQL_GET_STOCK_LIST_HSGT_TJ, params)
+        res = []
+        for row in cursor.fetchall():
+            data = {}
+            data['symbol'] = row[0]
+            res.append(data)
+        if len(res) > 0:
+            print('get all ' + security_type + ' list successfully from database')
+            return res
+        else:
+            return None
+    except Exception as e:
+        db.rollback(con)
+        print('get all ' + security_type + ' list failed :' + str(e))
+        return None
+    finally:
+        db.close_dbcon(con)
+
+
+def get_all_ready_stocks_hsgt_mx():
+    try:
+        security_type = 'stock'
+        con = db.get_dbcon()
+        cursor = con.cursor()
+        params = {'type': security_type}
+        cursor.execute(sql.SQL_GET_STOCK_LIST_HSGT_MX, params)
+        res = []
+        for row in cursor.fetchall():
+            data = {}
+            data['symbol'] = row[0]
+            res.append(data)
+        if len(res) > 0:
+            print('get all ' + security_type + ' list successfully from database')
+            return res
+        else:
+            return None
+    except Exception as e:
+        db.rollback(con)
+        print('get all ' + security_type + ' list failed :' + str(e))
+        return None
+    finally:
+        db.close_dbcon(con)
+
+
 def insert_hsgt_list():
     hsgts = sh.get_hsgt_list('eastmoney')
     try:
@@ -27,8 +77,8 @@ def insert_hsgt_list():
     return 0
 
 
-def insert_stock_hsgt_tj(symbol,source):
-    hsgts = sh.get_stock_hsgt_tj(symbol,source)
+def insert_stock_hsgt_tj(symbol):
+    hsgts = sh.get_stock_hsgt_tj(symbol, 'eastmoney')
     try:
         con = db.get_dbcon()
         cursor = con.cursor()
@@ -49,8 +99,8 @@ def insert_stock_hsgt_tj(symbol,source):
     return 0
 
 
-def insert_stock_hsgt_mx(symbol,source,startdate,enddate):
-    hsgts = sh.get_stock_hsgt_mx(symbol,source,startdate,enddate)
+def insert_stock_hsgt_mx(symbol,startdate,enddate):
+    hsgts = sh.get_stock_hsgt_mx(symbol,'eastmoney',startdate,enddate)
     try:
         con = db.get_dbcon()
         cursor = con.cursor()
@@ -71,7 +121,23 @@ def insert_stock_hsgt_mx(symbol,source,startdate,enddate):
     return 0
 
 
+def init_stock_hsgt_tj():
+    p_security_type = 'stock'
+    res_data = get_all_ready_stocks_hsgt_tj()
+    p_end_date = dt.datetime.now().strftime('%Y%m%d')
+    p_batch_number = time.time() * 10000000
+    if res_data:
+        for res in res_data:
+            p_symbol = res['symbol']
+            rnt = insert_stock_hsgt_tj(p_symbol)
+            status = 'y' if rnt else 'n'
+            log.insert_logger(p_security_type, p_symbol, 'init_stock_hsgt_tj', status, 'hsgttj',
+                          p_end_date, p_batch_number, rnt, 'init stock hsgttj')
+            time.sleep(1)
+    print('init stock hsgttj end')
+
+
 if __name__ == '__main__':
-    insert_hsgt_list()
-    #insert_stock_hsgt_tj('603300','eastmoney')
-    #insert_stock_hsgt_mx('603300','eastmoney','2021-03-01','2021-03-30')
+    #insert_hsgt_list()
+    #insert_stock_hsgt_tj('603300')
+    #insert_stock_hsgt_mx('603300','2021-03-01','2021-03-30')
