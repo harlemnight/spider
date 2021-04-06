@@ -12,9 +12,20 @@
  Target Server Version : 120003
  File Encoding         : 65001
 
- Date: 15/03/2021 16:45:13
+ Date: 06/04/2021 22:19:15
 */
 
+
+-- ----------------------------
+-- Table structure for t_china_hsgt_list
+-- ----------------------------
+DROP TABLE IF EXISTS "public"."t_china_hsgt_list";
+CREATE TABLE "public"."t_china_hsgt_list" (
+  "symbol" varchar(255) COLLATE "pg_catalog"."default",
+  "symbol_name" varchar(255) COLLATE "pg_catalog"."default",
+  "type" varchar(255) COLLATE "pg_catalog"."default"
+)
+;
 
 -- ----------------------------
 -- Table structure for t_china_index_1990_2010
@@ -23,6 +34,17 @@ DROP TABLE IF EXISTS "public"."t_china_index_1990_2010";
 CREATE TABLE "public"."t_china_index_1990_2010" (
   "index_date" varchar(20) COLLATE "pg_catalog"."default",
   "idd" int4 NOT NULL
+)
+;
+
+-- ----------------------------
+-- Table structure for t_china_rzrq_list
+-- ----------------------------
+DROP TABLE IF EXISTS "public"."t_china_rzrq_list";
+CREATE TABLE "public"."t_china_rzrq_list" (
+  "symbol" varchar(255) COLLATE "pg_catalog"."default",
+  "symbol_name" varchar(255) COLLATE "pg_catalog"."default",
+  "type" varchar(255) COLLATE "pg_catalog"."default"
 )
 ;
 
@@ -370,9 +392,9 @@ CREATE TABLE "public"."t_china_stock_hsgt_tj" (
   "rq" date,
   "shareholdsum" varchar(255) COLLATE "pg_catalog"."default",
   "sharesrate" varchar(255) COLLATE "pg_catalog"."default",
-  "closeprice" numeric(255),
+  "closeprice" varchar(255) COLLATE "pg_catalog"."default",
   "zdf" varchar(255) COLLATE "pg_catalog"."default",
-  "shareholdprice" numeric(255),
+  "shareholdprice" varchar(255) COLLATE "pg_catalog"."default",
   "shareholdpriceone" varchar(255) COLLATE "pg_catalog"."default",
   "shareholdpricefive" varchar(255) COLLATE "pg_catalog"."default",
   "shareholdpriceten" varchar(255) COLLATE "pg_catalog"."default",
@@ -1800,6 +1822,27 @@ CREATE INDEX "idx_t_china_stock_finance_dupont" ON "public"."t_china_stock_finan
 -- Indexes structure for table t_china_stock_finance_main
 -- ----------------------------
 CREATE INDEX "idx_t_china_stock_finance_main" ON "public"."t_china_stock_finance_main" USING btree (
+  "symbol" COLLATE "pg_catalog"."default" "pg_catalog"."text_ops" ASC NULLS LAST
+);
+
+-- ----------------------------
+-- Indexes structure for table t_china_stock_hsgt_mx
+-- ----------------------------
+CREATE INDEX "idx_t_china_stock_hsgt_mx_symbol" ON "public"."t_china_stock_hsgt_mx" USING btree (
+  "symbol" COLLATE "pg_catalog"."default" "pg_catalog"."text_ops" ASC NULLS LAST
+);
+
+-- ----------------------------
+-- Indexes structure for table t_china_stock_hsgt_tj
+-- ----------------------------
+CREATE INDEX "idx_t_china_stock_hsgt_tj_symbol" ON "public"."t_china_stock_hsgt_tj" USING btree (
+  "symbol" COLLATE "pg_catalog"."default" "pg_catalog"."text_ops" ASC NULLS LAST
+);
+
+-- ----------------------------
+-- Indexes structure for table t_china_stock_rzrq
+-- ----------------------------
+CREATE INDEX "idx_t_china_stock_rzrq_symbol" ON "public"."t_china_stock_rzrq" USING btree (
   "symbol" COLLATE "pg_catalog"."default" "pg_catalog"."text_ops" ASC NULLS LAST
 );
 
