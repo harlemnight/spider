@@ -3,6 +3,10 @@
 # https://www.cnblogs.com/deartear/p/8616457.html
 import example_price as ep
 import example_property as ept
+import example_finance as ef
+import example_rzrq as er
+import example_shareholder as es
+import example_hsgt as eh
 
 
 if __name__ == '__main__':
@@ -14,4 +18,15 @@ if __name__ == '__main__':
     #ept.init_industry_stocks()  # 初始化申万二级行业成份股 每周执行一次
     #ept.init_concepts_10jqka()    # 初始化概念 每周执行一次
     #ept.init_concept_stocks_10jqka()  # 初始化概念成份股 每周执行一次
+    ef.init_finance_main()
+    ef.init_finance_dupont()
+    er.insert_rzrq_list()
+    er.init_stock_rzrq()
+    #es.init_shareholders()
+    eh.insert_hsgt_list()
+    eh.init_stock_hsgt_tj()
+    eh.init_stock_hsgt_mx()
+
+
+
 

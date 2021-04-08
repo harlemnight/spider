@@ -3,6 +3,7 @@ import spider_sql as sql
 import datetime as dt
 import time
 import spider_shareholder as sf
+import example_price as ep
 import example_logger as log
 
 
@@ -87,6 +88,5 @@ if __name__ == '__main__':
     # insert_shareholders('000070', 'SZ000070')
     # insert_shareholders('600318', 'SH600318')
     # insert_shareholders('002456', 'SZ002456')
-    insert_shareholders('002463', 'SZ002463')
-
-    #init_shareholders()
+    ep.init_stocks()
+    init_shareholders()
