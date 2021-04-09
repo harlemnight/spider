@@ -177,7 +177,7 @@ def get_concept_stocks(source, concept_dm):
         driver = webdriver.Chrome(chrome_options=chrome_options)
         base_url = spcon.CONCEPT_STOCKS[source]['url']
         base_url = base_url % (1, concept_dm)
-        driver.delete_all_cookies()
+        #driver.delete_all_cookies()
         driver.get(base_url)
         page_count = parse_concept_stocks_count_data(driver.page_source, source)
         rs = []
@@ -192,7 +192,7 @@ def get_concept_stocks(source, concept_dm):
                     return None
                 rs.extend(res)
                 time.sleep(1)
-        driver.quit()
+        #driver.quit()
         return rs
     # eastmoney(东财)
     else:

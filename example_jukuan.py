@@ -16,6 +16,11 @@ from selenium.webdriver.chrome.options import Options
 #实现规避检测
 from selenium.webdriver import ChromeOptions
 import unittest
+from http import cookiejar
+import urllib.parse
+import urllib.request
+
+
 
 def juKuanLogin():
     auth('13908366866', '366866')
@@ -95,12 +100,12 @@ def baidu_search():
 
 
 def web_screen_spider():
+    USER_AGENT = 'Mozilla/5.0 (Windows NT 6.1; Win64; x64) AppleWebKit/537.36 ' \
+                 '(KHTML, like Gecko) Chrome/89.0.4389.114 Safari/537.36'
     chrome_options = Options()
-    chrome_options.add_argument(
-        'User-Agent=Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) '
-        'Chrome/78.0.3904.70 Safari/537.36')
+    chrome_options.add_argument(USER_AGENT)
     driver = webdriver.Chrome(chrome_options=chrome_options)
-    for i in range(35):
+    for i in range(1):
         try:
 
             # chrome_options.add_argument('Accept=text/html,application/xhtml+xml,application/xml;q=0.9,'
@@ -120,14 +125,15 @@ def web_screen_spider():
             url = "http://q.10jqka.com.cn/gn/detail/field/264648/page/%s/ajax/1/code/300008"
             m = int(i+1)
 
-            driver.delete_all_cookies()
+            #driver.delete_all_cookies()
             driver.get(url % m)
             cookie = driver.get_cookie(name='v')
             print(cookie)
+            print(driver.page_source)
             time.sleep(1)
         except Exception as e:
             driver.execute_script('window.stop()')
-    driver.quit()
+    #driver.quit()
 
 
 def maoyan_example():
@@ -211,9 +217,7 @@ def get_cook():
     print(cookie)
 
 
-from http import cookiejar
-import urllib.parse
-import urllib.request
+
 def get_cook2():
     loginUrl = "http://q.10jqka.com.cn/gn/detail/field/264648/page/1/ajax/1/code/300800";
     # 通过cookieJar（）类构建一个cookieJar（）对象，用来保存cookie的值
@@ -252,22 +256,18 @@ def req_cooke():
     print(cookie)
 
 
-
-
-
-
 if __name__ == '__main__':
-    juKuanLogin()
-    is_auth = is_auth()
-    c = get_industries(name='sw_l1', date=None)
-    print(c)
-    c = get_industries(name='sw_l2', date=None)
-    print(c)
-    c = get_industries(name='sw_l3', date=None)
-    print(c)
-    d = get_industry("600519.XSHG", date="2018-06-01")
-    print(d)
-    # web_screen_spider()
+    # juKuanLogin()
+    # is_auth = is_auth()
+    # c = get_industries(name='sw_l1', date=None)
+    # print(c)
+    # c = get_industries(name='sw_l2', date=None)
+    # print(c)
+    # c = get_industries(name='sw_l3', date=None)
+    # print(c)
+    # d = get_industry("600519.XSHG", date="2018-06-01")
+    # print(d)
+    web_screen_spider()
     #get_cook2()
     #req_cooke()
     # res = get_all_securities(types=[], date=None)

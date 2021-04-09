@@ -6,13 +6,13 @@ Created on 2020/07/29
 VERSION = '0.0.1'
 SAVE_CSV = False
 # http头部信息
-ACCEPT = 'text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,image/apng,*/*;' \
-         'q=0.8,application/signed-exchange;v=b3'
+ACCEPT = 'text/html,application/xhtml+xml,application/xml;q=0.9,' \
+         'image/avif,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.9'
 ACCEPT_ENCODING = 'gzip, deflate'
 ACCEPT_LANGUAGE = 'zh-CN,zh;q=0.9,nb;q=0.8'
 CACHE_CONTROL = 'max-age=0'
-USER_AGENT = 'Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 ' \
-             '(KHTML, like Gecko) Chrome/78.0.3904.70 Safari/537.36'
+USER_AGENT = 'Mozilla/5.0 (Windows NT 6.1; Win64; x64) AppleWebKit/537.36 ' \
+             '(KHTML, like Gecko) Chrome/89.0.4389.114 Safari/537.36'
 
 CONNECTION = 'keep-alive'
 HEADERS = {
