@@ -107,6 +107,6 @@ def init_areas(source):
 
 
 if __name__ == '__main__':
-    #init_areas('eastmoney')    #初始化地域 每周执行一次
+    init_areas('eastmoney')    #初始化地域 每周执行一次
     init_area_stocks('eastmoney') #初始化地域成份股 每周执行一次
 
