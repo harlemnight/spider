@@ -191,7 +191,7 @@ def get_concept_stocks(source, concept_dm):
                 if res is None:
                     return None
                 rs.extend(res)
-                time.sleep(0.5)
+                time.sleep(1)
         driver.quit()
         return rs
     # eastmoney(东财)
