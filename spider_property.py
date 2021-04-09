@@ -7,6 +7,7 @@ from lxml import etree
 import re
 from selenium import webdriver
 from selenium.webdriver.chrome.options import Options
+import time
 
 
 def get_industry_stocks_count(hy_dm):
@@ -172,7 +173,7 @@ def get_concept_stocks(source, concept_dm):
         chrome_options = Options()
         # chrome_options.add_argument('User-Agent='+user_agent)
         # 隐藏UI
-        chrome_options.add_argument('headless')
+        #chrome_options.add_argument('headless')
         driver = webdriver.Chrome(chrome_options=chrome_options)
         base_url = spcon.CONCEPT_STOCKS[source]['url']
         base_url = base_url % (1, concept_dm)
@@ -190,6 +191,7 @@ def get_concept_stocks(source, concept_dm):
                 if res is None:
                     return None
                 rs.extend(res)
+                time.sleep(0.5)
         driver.quit()
         return rs
     # eastmoney(东财)
@@ -248,7 +250,7 @@ def parse_concept_stocks_count_data(response_text, source):
     --------
      """
     # 10jqka(同花顺)
-    if source == spcon.CONCEPT_STOCKS_SOURCE[0]:
+    if source == '10jqka':
         return_html = etree.HTML(response_text)
         page_number = return_html.xpath('//a[@class="changePage" or @class="cur"][last()]/@page')
         rs = page_number[0] if page_number else 1
@@ -256,9 +258,9 @@ def parse_concept_stocks_count_data(response_text, source):
 
 
 if __name__ == '__main__':
-    # 10jqka概念基本被废弃
     # rs = get_concepts('10jqka')
-    rs = get_concepts('eastmoney')
+    #rs = get_concepts('eastmoney')
     # print(rs)
-    rs = get_concept_stocks('eastmoney', 'BK0490')
+    #rs = get_concept_stocks('eastmoney', 'BK0490')
+    rs = get_concept_stocks('10jqka', '300008')
     print(rs)
