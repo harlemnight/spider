@@ -212,13 +212,15 @@ SQL_GET_STOCK_LIST_HSGT_TJ = 'select l.symbol,t.market_lx||l.symbol pre_symbol f
                      ' t_china_security_market t  ' \
                      'where 1=1 and substr(l.symbol,1,3) = t.pre_symbol and l.type = \'stock\'' \
                      ' and not exists (  select null from t_xt_logger_mx mx where mx.symbol = l.symbol' \
-                     ' and mx.security_type = \'stock\' and mx.operation = \'init_stock_hsgt_tj\' )'
+                     ' and mx.security_type = \'stock\' and mx.operation = \'init_stock_hsgt_tj\' ) ' \
+                             ' order by l.symbol'
 
 SQL_GET_STOCK_LIST_HSGT_MX = 'select l.symbol,t.market_lx||l.symbol pre_symbol from t_china_hsgt_list l,' \
                      ' t_china_security_market t  ' \
                      'where 1=1 and substr(l.symbol,1,3) = t.pre_symbol and l.type = \'stock\'' \
                      ' and not exists (  select null from t_xt_logger_mx mx where mx.symbol = l.symbol' \
-                     ' and mx.security_type = \'stock\' and mx.operation = \'init_stock_hsgt_mx\' )'
+                     ' and mx.security_type = \'stock\' and mx.operation = \'init_stock_hsgt_mx\' )' \
+                             ' order by l.symbol'
 
 
 SQL_DELETE_STOCK_HSGT_TJ = 'delete from t_china_stock_hsgt_tj where symbol = %(symbol)s '
