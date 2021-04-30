@@ -22,10 +22,10 @@ if __name__ == '__main__':
     ef.init_finance_dupont()
     er.insert_rzrq_list()
     er.init_stock_rzrq()
-    #es.init_shareholders()
     eh.insert_hsgt_list()
     eh.init_stock_hsgt_tj()
     eh.init_stock_hsgt_mx()
+    es.init_shareholders()
 
 
 

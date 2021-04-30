@@ -154,7 +154,8 @@ def init_stock_hsgt_mx():
 
 
 if __name__ == '__main__':
-    insert_hsgt_list()
+    hsgt_num = insert_hsgt_list()
+    print(hsgt_num)
     ks_rq = (dt.datetime.now() - dt.timedelta(days=30)).strftime('%Y-%m-%d')
     js_rq = (dt.datetime.now()-dt.timedelta(days=1)).strftime('%Y-%m-%d')
     init_stock_hsgt_tj()
