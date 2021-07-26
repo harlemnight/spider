@@ -365,3 +365,23 @@ HSGT_MX_STOCK = {
             'headers': HEADERS
         }
 }
+
+
+##-------------------------彩票----------------------------------------------------
+#https://zst.aicai.com/ssq
+#https://datachart.500.com/ssq/history/history.shtml
+LOTTERY = {
+    '500caipiao': {
+            'url': 'https://datachart.500.com/ssq/history/newinc/history.php?start=%s&end=',
+            'params': {
+            },
+            'headers': HEADERS
+        },
+    'SINA':{
+        'url': 'https://datachart.500.com/ssq/history/newinc/history.php?start=03001&end=21083',
+            'params': {
+            },
+            'headers': HEADERS
+
+    }
+}

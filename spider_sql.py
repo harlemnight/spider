@@ -240,3 +240,10 @@ SQL_INSERT_STOCK_HSGT_MX = 'insert into t_china_stock_hsgt_mx(symbol, symbol_nam
                            ' %(shareholdprice)s, %(shareholdpriceone)s, %(shareholdpricefive)s, ' \
                            '%(shareholdpriceten)s, %(market)s, %(shareholdsumchg)s, %(zb)s, %(zzb)s)'
 
+
+SQL_DELETE_LOTTERY = 'delete from t_ticket_ssq where ssq >= %(ssq)s '
+SQL_INSERT_LOTTERY = 'insert into t_ticket_ssq(ssq,red_v1,red_v2,red_v3,red_v4,red_v5,red_v6,blue_v1,' \
+                     'blue_v2,jcje,top1,top1_je,top2,top2_je,tz_je,rq)' \
+                     'values (%(ssq)s,%(red_v1)s,%(red_v2)s,%(red_v3)s,%(red_v4)s,%(red_v5)s,%(red_v6)s,' \
+                     '%(blue_v1)s,%(blue_v2)s,%(jcje)s,%(top1)s,%(top1_je)s,%(top2)s,' \
+                     '%(top2_je)s,%(tz_je)s,%(rq)s)'
