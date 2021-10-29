@@ -86,7 +86,10 @@ def init_shareholders():
 
 if __name__ == '__main__':
     # insert_shareholders('000070', 'SZ000070')
-    # insert_shareholders('600318', 'SH600318')
+
     # insert_shareholders('002456', 'SZ002456')
-    ep.init_stocks()
-    init_shareholders()
+    # ep.init_stocks()
+    # init_shareholders()
+    #rs = insert_shareholders('600597', 'SH600597')
+    rs= insert_shareholders('002092', 'SZ002092')
+    print(rs)

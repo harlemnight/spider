@@ -29,5 +29,5 @@ def insert_lottery(source, start):
 
 
 if __name__ == '__main__':
-    rs = insert_lottery('500caipiao', '21075')
+    rs = insert_lottery('500caipiao', '21115')
     print(rs)
