@@ -32,4 +32,4 @@ def insert_lottery(source, start):
 if __name__ == '__main__':
     rs = insert_lottery('500caipiao', '22028')
     print(rs)
-    print('yes')
+    print('yes123')
