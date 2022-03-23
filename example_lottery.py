@@ -21,6 +21,7 @@ def insert_lottery(source, start):
         return rownum
     except Exception as e:
         db.rollback(con)
+
         print('insert ' + str(rownum) + ' lottery failed' + str(e))
         return 0
     finally:
@@ -29,5 +30,6 @@ def insert_lottery(source, start):
 
 
 if __name__ == '__main__':
-    rs = insert_lottery('500caipiao', '21115')
+    rs = insert_lottery('500caipiao', '22028')
     print(rs)
+    print('yes')

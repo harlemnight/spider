@@ -22,9 +22,11 @@ def parse_lottery_data(response, source):
     if source == '500caipiao':
         return_html = etree.HTML(response.text)
         result = return_html.xpath('//tbody[@id="tdata"]/tr')
+        print(result)
         res = []
         for tr in result:
             num = tr.xpath('./td/text()')
+            print(num)
             res.append(dict(zip(['ssq','red_v1','red_v2','red_v3','red_v4','red_v5',
                                  'red_v6','blue_v1','blue_v2','jcje','top1','top1_je',
                                  'top2','top2_je','tz_je','rq'],
